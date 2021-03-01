@@ -1,6 +1,6 @@
 # Prototype
 
-## Run Docker
+## Run Docker (required for MySQL database)
 
 ### Windows
 
