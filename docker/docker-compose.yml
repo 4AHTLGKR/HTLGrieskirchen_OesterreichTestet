@@ -8,4 +8,4 @@ services:
       MYSQL_ROOT_PASSWORD: htltestet
       MYSQL_DATABASE: htltestet
     ports:
-    - "3307:3306"
+    - "3306:3306"
