@@ -4,7 +4,7 @@ Projekt der [HTL-Grieskirchen](htl-grieskirchen.net) um aufzuzeigen, dass die Ö
 
 ## Dateistruktur
 
-ToDO
+ToDo
 
 ## Technologie
 
