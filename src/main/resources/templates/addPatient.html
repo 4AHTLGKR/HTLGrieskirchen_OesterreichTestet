@@ -7,10 +7,25 @@
 <body>
     <h1>Add a patient</h1>
     <form action="#" th:action="@{/}" th:object="${patient}" method="post">
-        <p>Id: <input type="number" th:field="*{id}"/></p>
         <p>Firstname: <input type="text" th:field="*{firstname}"/></p>
         <p>Lastname : <input type="text" th:field="*{lastname}"/></p>
         <button type="submit">Register</button>
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> Firstname </th>
+                <th> Lastname </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${patients}">
+                <td><span th:text="${p.id}"> Id </span></td>
+                <td><span th:text="${p.firstname}"> Firstname </span></td>
+                <td><span th:text="${p.lastname}"> Firstname </span></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
