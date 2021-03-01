@@ -1,16 +1,30 @@
-# HTL-Testet
+# Prototype
 
-Projekt der [HTL-Grieskirchen](htl-grieskirchen.net) um aufzuzeigen, dass die Österreich-Testet Platform keine [500.000€](https://www.derstandard.at/story/2000124080479/500-000-euro-fuer-oesterreich-testet-kritik-an-kosten-fuer) kosten muss.
+## Run Docker
 
-## Dateistruktur
+### Windows
 
-ToDo
+- Download and install [Docker for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+- Restart your PC
+- Wait for docker to start (watch docker icon in your toolbar)
+- Open a terminal in the `docker` folder
+- run `docker-compose.exe up`
 
-## Technologie
+### Debian
 
-| | |
-|-|-|
-| Java | Oracle OpenJDK 15.0.2 |
-| IDE  | IntelliJ 2020.3.2 |
-| Spring | Maven Project, Spring Boot 2.4.3 |
-| DB | MariaDB Server 10.5.9 |
+- `sudo apt-get update`
+- `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+- `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+- `sudo apt-key fingerprint 0EBFCD88`
+- `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+- `sudo apt-get update`
+- `sudo apt-get install docker-ce docker-ce-cli containerd.io`
+- `sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+- `sudo chmod +x /usr/local/bin/docker-compose`
+- Open the `docker` folder
+- `docker-compose up`
+
+## Run the spring app
+
+- start the program with the play button in IntelliJ
+- open a webbrowser on `localhost:8080`
