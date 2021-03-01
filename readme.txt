@@ -1,1 +1,1 @@
-This is a nice Project
+This is a Project by the HTL Grieskirchen
