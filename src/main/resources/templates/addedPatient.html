@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>HTL-Testet Prototype</title>
+</head>
+<body>
+    <h1>Add a patient</h1>
+    <p th:text="'Added [' + ${patient.id} + '] ' + ${patient.firstname} + ' ' + ${patient.lastname}"></p>
+    <a href="/">Add another patient</a>
+</body>
+</html>

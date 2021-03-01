@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>HTL-Testet Prototype</title>
+</head>
+<body>
+    <h1>Add a patient</h1>
+    <form action="#" th:action="@{/}" th:object="${patient}" method="post">
+        <p>Id: <input type="number" th:field="*{id}"/></p>
+        <p>Firstname: <input type="text" th:field="*{firstname}"/></p>
+        <p>Lastname : <input type="text" th:field="*{lastname}"/></p>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package at.htlgkr.prototype;
 
-public class Patient {
+import java.io.Serializable;
+
+public class Patient implements Serializable {
     private long id;
     private String firstname;
     private String lastname;
