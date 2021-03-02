@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add a patient</h1>
-    <form action="#" th:action="@{/}" th:object="${patient}" method="post">
+    <form th:action="@{/}" th:object="${patient}" method="post">
         <p>Firstname: <input type="text" th:field="*{firstname}"/></p>
         <p>Lastname : <input type="text" th:field="*{lastname}"/></p>
         <button type="submit">Register</button>
@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             <tr th:each="p : ${patients}">
-                <td><span th:text="${p.id}"> Id </span></td>
+                <td><a th:href="@{/show(searchId=${p.id})}" th:text="${p.id}"> Id </a></td>
                 <td><span th:text="${p.firstname}"> Firstname </span></td>
                 <td><span th:text="${p.lastname}"> Firstname </span></td>
             </tr>

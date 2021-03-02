@@ -2,13 +2,11 @@ package at.htlgkr.prototype;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PatientController {
-    private final PatientRepository patientRepository;
+    private PatientRepository patientRepository;
 
     public PatientController(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -21,9 +19,16 @@ public class PatientController {
         return "addPatient";
     }
 
+    @ResponseBody
+    @GetMapping("/show")
+    public Patient showInfos(Long searchId) {
+        return patientRepository.findById(searchId).orElseGet(null);
+    }
+
     @PostMapping("/")
     public String patientSubmit(@ModelAttribute("patient") Patient patient, Model model) {
         model.addAttribute("patient", patient);
+        model.addAttribute("searchId", (long)0);
         patientRepository.save(patient);
         return "subFolder/addedPatient";
     }
