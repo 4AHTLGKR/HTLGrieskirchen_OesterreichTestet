@@ -44,7 +44,7 @@ public class PrototypeApplicationTest {
     }
 
     @Test
-    public void putAddsToDatabase() throws Exception {
+    public void postAddsToDatabase() throws Exception {
         Patient patient = new Patient();
         patient.setFirstname("Test");
         patient.setLastname("User");
