@@ -23,7 +23,7 @@
         <tbody>
             <tr th:each="p : ${patients}">
                 <td><a th:href="@{/show(searchId=${p.id})}" th:text="${p.id}"> Id </a></td>
-                <td><span th:text="${p.firstname}"> Firstname </span></td>
+                <td><span th:text="${p.firstname.toUpperCase()}"> Firstname </span></td>
                 <td><span th:text="${p.lastname}"> Firstname </span></td>
             </tr>
         </tbody>

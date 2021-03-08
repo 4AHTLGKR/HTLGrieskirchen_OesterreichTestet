@@ -28,7 +28,6 @@ public class PatientController {
     @PostMapping("/")
     public String patientSubmit(@ModelAttribute("patient") Patient patient, Model model) {
         model.addAttribute("patient", patient);
-        model.addAttribute("searchId", (long)0);
         patientRepository.save(patient);
         return "subFolder/addedPatient";
     }
