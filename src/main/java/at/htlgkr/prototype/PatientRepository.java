@@ -1,6 +1,6 @@
 package at.htlgkr.prototype;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PatientRepository extends CrudRepository<Patient, Long> {
+public interface PatientRepository extends JpaRepository<Patient, Long> {
 }
