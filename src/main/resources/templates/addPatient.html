@@ -6,6 +6,11 @@
     <title>HTL-Testet Prototype</title>
 </head>
 <body>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
     <h1>Add a patient</h1>
     <form th:action="@{/}" th:object="${patient}" method="post">
         <p>Firstname: <input type="text" th:field="*{firstname}"/></p>
