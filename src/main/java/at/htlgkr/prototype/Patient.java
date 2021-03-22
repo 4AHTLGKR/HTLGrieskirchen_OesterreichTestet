@@ -14,6 +14,13 @@ public class Patient implements Serializable {
     private String firstname;
     private String lastname;
 
+    public Patient() { }
+    public Patient(Long id, String firstname, String lastname) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public Long getId() {
         return id;
     }

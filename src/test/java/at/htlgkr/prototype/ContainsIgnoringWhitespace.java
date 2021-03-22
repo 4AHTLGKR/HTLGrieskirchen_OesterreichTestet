@@ -10,7 +10,7 @@ public class ContainsIgnoringWhitespace extends BaseMatcher<String> {
     }
 
     private ContainsIgnoringWhitespace(String string) {
-        this.string = string;
+        this.string = string.replaceAll("\\s+", "");
     }
 
     @Override
