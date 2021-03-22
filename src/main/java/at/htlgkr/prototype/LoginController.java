@@ -28,6 +28,11 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/freePage")
+    public String freePage(HttpSession session) {
+        return "freePage";
+    }
+
     private String getErrorMessage(HttpServletRequest request, String key) {
         Exception exception = (Exception) request.getSession().getAttribute(key);
         String error = "";

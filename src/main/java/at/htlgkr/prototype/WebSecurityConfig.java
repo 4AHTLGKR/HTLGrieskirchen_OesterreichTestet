@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
                 .authorizeRequests()
                     .antMatchers("/login").permitAll()
+                    .antMatchers("/freePage").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
