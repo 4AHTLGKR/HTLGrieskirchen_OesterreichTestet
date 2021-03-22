@@ -1,4 +1,4 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Security;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;

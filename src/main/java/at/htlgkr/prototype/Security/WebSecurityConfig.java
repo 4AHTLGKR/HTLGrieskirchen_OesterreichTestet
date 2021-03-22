@@ -1,4 +1,4 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

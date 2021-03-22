@@ -1,4 +1,4 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Security;
 
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;

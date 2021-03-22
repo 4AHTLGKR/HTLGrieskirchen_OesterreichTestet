@@ -1,4 +1,4 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Patient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

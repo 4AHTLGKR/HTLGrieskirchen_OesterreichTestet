@@ -1,5 +1,6 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Security;
 
+import at.htlgkr.prototype.Security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

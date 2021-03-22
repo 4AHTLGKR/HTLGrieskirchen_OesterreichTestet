@@ -1,4 +1,4 @@
-package at.htlgkr.prototype;
+package at.htlgkr.prototype.Patient;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
