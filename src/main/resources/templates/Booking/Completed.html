@@ -3,7 +3,7 @@
 <head th:include="fragments/layout :: headFragment">
     <title id="pageTitle">Completed</title>
 </head>
-<body>
+<body class="mx-5">
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
@@ -25,9 +25,7 @@
     <p>Für einen möglichst schnellen Testablauf drucken Sie den Laufzettel aus und bringen ihn zum Testtermin mit. Ein
         Ausdrucken vor Ort kann nicht sichergestellt werden, da nicht alle Screening-Stationen über Drucker
         verfügen.</p>
-    <div th:insert="fragments/spanner :: spannerFragment(currentpage = 4, percent = 87.5)"></div>
-</div>
-
+    <div th:insert="fragments/layout :: footerFragment(currentpage = 4, percent = 87.5)"></div></div>
 <div th:insert="fragments/layout :: scripts">
 
 </div>

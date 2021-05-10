@@ -3,7 +3,7 @@
 <head th:include="fragments/layout :: headFragment">
     <title id="pageTitle">Start</title>
 </head>
-<body>
+<body class="mx-5">
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
@@ -18,22 +18,16 @@
         <input type="date">
     </div>
 
-    <button class="btn btn-primary">Bestätigen</button>
+    <button class="btn btn-primary mt-3 float-end">Bestätigen</button>
+    <br>
 
 
-<div th:insert="fragments/spanner :: spannerFragment(currentpage = 1, percent = 12.5)"></div>
 
-    <div class="navbar fixed-bottom">
-        <div class="container">
-            <img th:src="@{/img/Logo_HTLBA_Grieskirchen.png}">
-        </div>
-    </div>
-
+    <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
 </div>
 
-<div th:insert="fragments/layout :: scripts">
+<div th:insert="fragments/layout :: scripts"></div>
 
-</div>
 
 </body>
 </html>
