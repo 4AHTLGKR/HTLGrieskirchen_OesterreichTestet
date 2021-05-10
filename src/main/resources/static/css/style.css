@@ -1,7 +1,5 @@
-button {
-    background-color: #0063AB;
-    padding: 5px;
-    color: white;
-    display: inline-block;
-    border-radius: 5px;
+.spanner-item {
+    width: 3em;
+    height: 3em;
+    padding-top: 10px;
 }
