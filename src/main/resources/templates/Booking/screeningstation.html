@@ -11,7 +11,7 @@
     <h1>Screeningstation auswählen</h1>
     <p>Bitte wählen Sie eine der verfügbaren Screeningstationen aus.</p>
 
-    <p>Bezirk:</p>
+    <p class="text-muted">Bezirk:</p>
 
     <select class="form-select">
         <option selected>Open this select menu</option>
@@ -20,19 +20,31 @@
         <option value="3">Three</option>
     </select>
 
-
-    <ul>
-        <li>
-            <p>Ort</p>
+<div class="border mb-3">
+    <ul class="list-group location-list list-group-flush" >
+        <li class="list-group-item">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+        <li class="list-group-item">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+        <li class="list-group-item">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+        <li class="list-group-item">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
         </li>
     </ul>
+</div>
 
     <div>
-        <p>Gewählte Station:</p>
-        <p>Ort</p>
+        <h3>Gewählte Screeningstation</h3>
+        <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
     </div>
 
-    <button class="btn btn-primary">Weiter</button>
+
+
+    <button class="btn btn-primary float-end">Weiter</button>
     <div th:insert="fragments/layout :: footerFragment (currentpage = 2, percent = 37.5)"></div>
 </div>
 
