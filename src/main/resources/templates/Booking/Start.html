@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <!--<link th:href="@{/css/style.css}" rel="stylesheet"> -->
+    <script th:src="@{/frameworks/bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js}"></script>
+    <link th:href="@{/frameworks/bootstrap-5.0.0-dist/css/bootstrap.min.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <header>
+        <img th:src="@{/img/Logo_HTLBA_Grieskirchen.png}">
+    </header>
+
+    <h1>Anmeldung zum Covid-19 Schnelltest</h1>
+    <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
+    <p>Bitte geben Sie ihr geburtsdatum ein.</p>
+
+    <div>
+        <label>Geburtsdatum:</label>
+        <br>
+        <input type="date">
+    </div>
+
+    <button class="btn btn-primary">Bestätigen</button>
+</body>
+</html>
