@@ -11,4 +11,19 @@ public class TestController {
     public String test(Model model) {
         return "Booking/Start";
     }
+
+    @GetMapping("screeningstation")
+    public String screeningstation(Model model) {
+        return "Booking/screeningstation";
+    }
+
+    @GetMapping("timeSlot")
+    public String timeSlot(Model model) {
+        return "Booking/TimeSlot";
+    }
+
+    @GetMapping("completed")
+    public String completed(Model model) {
+        return "Booking/Completed";
+    }
 }

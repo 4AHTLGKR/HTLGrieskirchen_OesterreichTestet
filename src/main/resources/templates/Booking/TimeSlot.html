@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+  <title id="pageTitle">TimeSlot</title>
+</head>
+<body>
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+  <h1>Buchen Sie Ihren Testtermin</h1>
+  <p>Station</p>
+
+  <div>
+    <br>
+    <input type="date">
+  </div>
+
+  <div>
+    <ul>
+      <li>
+        <p>Uhrzeit</p>
+      </li>
+    </ul>
+  </div>
+
+  <button class="btn btn-primary">Zurück</button>
+  <button class="btn btn-primary">Weiter</button>
+</div>
+</body>
+</html>

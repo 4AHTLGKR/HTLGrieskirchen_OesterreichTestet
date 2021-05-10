@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+  <title id="pageTitle">ScreeningStation</title>
+</head>
+<body>
+
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+  <h1>Screeningstation auswählen</h1>
+  <p>Bitte wählen Sie eine der verfügbaren Screeningstationen aus.</p>
+
+  <p>Bezirk:</p>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+
+  <ul>
+    <li>
+      <p>Ort</p>
+    </li>
+  </ul>
+
+  <div>
+    <p>Gewählte Station:</p>
+    <p>Ort</p>
+  </div>
+
+  <button class="btn btn-primary">Weiter</button>
+</div>
+</body>
+</html>
