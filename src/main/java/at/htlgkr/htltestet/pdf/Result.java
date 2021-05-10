@@ -24,7 +24,6 @@ public class Result extends PDFData{
     private String firstname;
     private String lastname;
     private LocalDate birthdate;
-    private String testtype;
     private String location;
     private LocalDateTime testingDate;
     private TestResult testResult;
@@ -38,7 +37,7 @@ public class Result extends PDFData{
         result.addPage(new PDPage());
         PDPageContentStream pdcs = new PDPageContentStream(result, result.getPage(0));
 
-        BufferedImage bi = ImageIO.read(new File("src\\main\\resources\\Images\\Logo_HTLBA_Grieskirchen.png"));
+        BufferedImage bi = ImageIO.read(new File("src\\main\\resources\\Images\\Logo_HTLBA_Grieskirchen_Big.png"));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, "png", baos);
         byte[] bytes = baos.toByteArray();
@@ -70,16 +69,16 @@ public class Result extends PDFData{
     private void fillContent(){
         lines = new ArrayList<>();
         Line l = new Line();
-        l.setFont(PDType1Font.TIMES_BOLD);
+        l.setFont(PDType1Font.HELVETICA_BOLD);
         l.setFontSize(12);
-        l.setText("Aktion \"Österreich testet\"");
+        l.setText("Aktion \"HTL testet\"");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
 
         l = new Line();
         l.setFontSize(16);
-        l.setFont(PDType1Font.TIMES_BOLD);
+        l.setFont(PDType1Font.HELVETICA_BOLD);
         l.setHas2LinesNothing(true);
         l.setText("                                  ERGEBNISPROTOKOLL");
         lines.add(l);
@@ -87,146 +86,146 @@ public class Result extends PDFData{
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setHas2LinesNothing(true);
         l.setText("Dieses Schreiben protokolliert einen SARS-CoV-2-Test");
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
-        l.setText("im Rahmen der Aktion \"Österreich testet\".");
+        l.setFont(PDType1Font.HELVETICA);
+        l.setText("im Rahmen der Aktion \"HTL testet\".");
         lines.add(l);
 
         l = new Line();
         l.setFontSize(16);
-        l.setFont(PDType1Font.TIMES_BOLD);
+        l.setFont(PDType1Font.HELVETICA_BOLD);
         l.setText("GETESTETE PERSON:");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
-        l.setText("Herr/Frau:                   " + firstname);
+        l.setFont(PDType1Font.HELVETICA);
+        l.setText("Herr/Frau:                    " + firstname);
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("                                    " + lastname);
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Geburtsdatum:            " + birthdate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
-        l.setText("Test-Typ:                    " + testtype);
+        l.setFont(PDType1Font.HELVETICA);
+        l.setText("Test-Typ:                     " + "Antigen-Test auf SARS-CoV-2");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Ort:                              " + location);
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Datum/Uhrzeit der      " + testingDate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Probenentnahme:                            ");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Zum Zeitpunkt der Probenentahme lautet das Testergebnis:");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(16);
-        l.setFont(PDType1Font.TIMES_BOLD);
-        l.setText("                                                        " + testResult);
+        l.setFont(PDType1Font.HELVETICA_BOLD);
+        l.setText("                                                  " + testResult);
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Dieser Nachweis ist ausschließlich durch die darin angeführte Person für die in den");
         l.setHas2LinesNothing(true);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("jeweiligen Verordnungen festgelegten Zwecke zu verwenden. Eine missbräuchliche");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("Verwendung oder Verfälschung des Nachweises kann strafrechtliche Konsequenzen");
         l.setHas2LinesNothing(false);
         lines.add(l);
 
         l = new Line();
         l.setFontSize(12);
-        l.setFont(PDType1Font.TIMES_ROMAN);
+        l.setFont(PDType1Font.HELVETICA);
         l.setText("zur Folge haben.");
         l.setHas2LinesNothing(false);
         lines.add(l);
