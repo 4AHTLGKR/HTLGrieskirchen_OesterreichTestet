@@ -1,6 +1,6 @@
 # HTL-Testet
 
-Projekt der [HTL-Grieskirchen](https://htl-grieskirchen.net) um aufzuzeigen, dass die Österreich-Testet Platform keine [500.000€](https://www.derstandard.at/story/2000124080479/500-000-euro-fuer-oesterreich-testet-kritik-an-kosten-fuer) kosten muss.
+Projekt der [HTL-Grieskirchen](https://htl-grieskirchen.at) um aufzuzeigen, dass die Österreich-Testet Platform keine [500.000€](https://www.derstandard.at/story/2000124080479/500-000-euro-fuer-oesterreich-testet-kritik-an-kosten-fuer) kosten muss.
 
 ## Dateistruktur
 
