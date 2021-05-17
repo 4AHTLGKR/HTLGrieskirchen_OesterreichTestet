@@ -1,14 +1,14 @@
-package at.htlgkr.htltestet;
+package at.htlgkr.htltestet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TestController {
+public class RegistrationController {
 
-    @GetMapping("test")
-    public String test(Model model) {
+    @GetMapping("start")
+    public String start(Model model) {
         return "Booking/Start";
     }
 
