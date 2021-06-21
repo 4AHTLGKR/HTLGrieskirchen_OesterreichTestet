@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+    <title id="pageTitle">Completed</title>
+</head>
+<body class="mx-5">
+
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+    <h1>Buchung erfolgreich abgeschlossen!</h1>
+    <p class="alert alert-success">Ihre Screening Buchung wurde erfolgreich aufgenommen.</p>
+
+    <h5>Zum Testtermin bringen Sie bitte mit:</h5>
+    <ul>
+        <li>
+            <p>Ihren Laufzettel (Nummer: -1)</p>
+        </li>
+        <li>
+            Ihren Lichtbildausweis
+        </li>
+    </ul>
+
+    <button class="btn btn-primary">Laufzettel herunterladen</button>
+    <p>Für einen möglichst schnellen Testablauf drucken Sie den Laufzettel aus und bringen ihn zum Testtermin mit. Ein
+        Ausdrucken vor Ort kann nicht sichergestellt werden, da nicht alle Screening-Stationen über Drucker
+        verfügen.</p>
+    <div th:insert="fragments/layout :: footerFragment(currentpage = 4, percent = 87.5)"></div></div>
+<div th:insert="fragments/layout :: scripts">
+
+</div>
+</body>
+</html>
