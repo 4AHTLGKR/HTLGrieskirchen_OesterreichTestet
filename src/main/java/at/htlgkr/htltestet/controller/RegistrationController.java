@@ -1,5 +1,6 @@
 package at.htlgkr.htltestet.controller;
 
+import at.htlgkr.htltestet.data.Registration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ public class RegistrationController {
 
     @GetMapping("start")
     public String start(Model model) {
+        model.addAttribute("registration", new Registration());
         return "Booking/Start";
     }
 

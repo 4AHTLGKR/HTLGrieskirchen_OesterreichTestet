@@ -12,22 +12,23 @@
     <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
     <p>Bitte geben Sie Ihr Geburtsdatum ein.</p>
 
+    <form action="/screeningstation" th:object="${registration}" method="post">
     <div>
         <label>Geburtsdatum:</label>
         <br>
-        <input type="date">
+        <input id="birthdate" required type="date" th:field="*{birthdate}">
     </div>
 
-    <a href="/screeningstation" class="btn btn-primary mt-3 float-end">Bestätigen</a>
+    <button type="submit" class="btn btn-primary mt-3 float-end">Bestätigen</button>
     <br>
-
+    </form>
 
 
     <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
 </div>
 
 <div th:insert="fragments/layout :: scripts"></div>
-
+<script th:src="@{/JS/script.js}"></script>
 
 </body>
 </html>

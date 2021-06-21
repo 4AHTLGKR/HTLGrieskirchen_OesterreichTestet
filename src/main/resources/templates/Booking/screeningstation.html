@@ -14,10 +14,8 @@
     <p class="text-muted">Bezirk:</p>
 
     <select class="form-select">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected>Alle</option>
+        <option value="Grieskirchen">Grieskirchen</option>
     </select>
 
 <div class="border mb-3">
@@ -39,7 +37,7 @@
 
     <div>
         <h3>Gewählte Screeningstation</h3>
-        <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        <div class="selected-screeningstation"></div>
     </div>
 
 
@@ -52,5 +50,6 @@
 
 
 </div>
+<script th:src="@{/JS/script.js}"></script>
 </body>
 </html>
