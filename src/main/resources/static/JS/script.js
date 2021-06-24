@@ -10,7 +10,7 @@ $('#birthdate').on('input', function(){
     console.log($(this).val());
 });
 
-$('.location-list li').click(function() {
+$('.screen-place li').click(function() {
     $(".selected-screeningstation").html($(this).text());
     $('#selectedScreeningStationId').val($(this).children('input').first().val());
     console.log($('#selectedScreeningStationId').val());
@@ -18,3 +18,19 @@ $('.location-list li').click(function() {
     $(this).toggleClass('active').siblings().removeClass('active');
 });
 
+$('.time-list li').click(function() {
+    $(this).toggleClass('active').siblings().removeClass('active');
+    changeDateTime();
+    console.log($('#selectedTimeSlot').val());
+});
+
+$('#dateSlot').on('input', function(){
+    changeDateTime();
+    console.log($('#selectedTimeSlot').val());
+});
+
+function changeDateTime()
+{
+    $("#selectedTimeSlot").val($('#dateSlot').val() + " " + $(".active").text());
+
+}
