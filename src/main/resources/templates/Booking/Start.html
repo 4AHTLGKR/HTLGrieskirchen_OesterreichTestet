@@ -12,7 +12,7 @@
     <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
     <p>Bitte geben Sie Ihr Geburtsdatum ein.</p>
 
-    <form action="/screeningstation" th:object="${registration}" method="post">
+    <form th:action="@{screeningstation}" th:object="${registration}" method="post">
     <div>
         <label>Geburtsdatum:</label>
         <br>
