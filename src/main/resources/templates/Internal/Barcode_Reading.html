@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments/layout :: headFragment">
-    <title id="pageTitle">Barcode</title>
-</head>
+      <head th:include="fragments/layout :: headFragment">
+          <title id="pageTitle">Barcode</title>
+      </head>
 
 
-<body>
+  <body>
 
-<div th:insert="fragments/navbar :: navbarFragment"></div>
-<div class="wrap">
-    <div id="main" class="container clear-top">
+  <div th:insert="fragments/navbar :: navbarFragment"></div>
+
+    <section id="container" class="container">
         <div class="controls">
-            <label>
-                <span>Camera</span>
-                <select name="input-stream_constraints" id="deviceSelection">
-                </select>
-            </label>
+                <label>
+                    <span>Camera</span>
+                    <select name="input-stream_constraints" id="deviceSelection">
+                    </select>
+                </label>
         </div>
-        <div id="result_strip">
+      <div id="result_strip">
 
-            <br>
-            <div class="form-group">
-                <label for="inputCode">Authentification Code</label>
-                <input type="text" class="form-control" id="inputCode" placeholder="Enter code">
-                <small id="emailHelp" class="form-text text-muted">Enter code manually if BarCode-Reader doesn't
-                    work</small>
-            </div>
-            <div id="interactive" class="viewport"></div>
+         <br>
+          <div class="form-group">
+              <label for="inputCode">Authentification Code</label>
+              <input type="text" class="form-control" id="inputCode"  placeholder="Enter code">
+              <small id="emailHelp" class="form-text text-muted">Enter code manually if BarCode-Reader doesn't work</small>
+          </div>
+          <div id="interactive" class="viewport"></div>
 
-        </div>
-    </div>
-</div>
-<div th:insert="fragments/layout :: footerWithoutCurrentPageFragment"></div>
+      </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"
-        crossorigin="anonymous"></script>
-<script src="//webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
-<script th:src="@{/frameworks/QuaggaJS-dist/quagga.js}" type="text/javascript"></script>
-<script th:src="@{/frameworks/QuaggaJS-dist/reading.js}" type="text/javascript"></script>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"
+    crossorigin="anonymous"></script>
+    <script src="//webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
+    <script th:src="@{/frameworks/QuaggaJS-dist/quagga.js}" type="text/javascript"></script>
+    <script th:src="@{/frameworks/QuaggaJS-dist/reading.js}" type="text/javascript"></script>
 
 
-</body>
+
+  <div th:insert="fragments/layout :: footerWithoutCurrentPageFragment"></div>
+
+  </body>
 </html>
