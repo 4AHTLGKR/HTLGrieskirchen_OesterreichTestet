@@ -6,12 +6,6 @@ import at.htlgkr.htltestet.data.RegistrationDataRepository;
 import at.htlgkr.htltestet.data.ScreeningStation;
 import at.htlgkr.htltestet.data.ScreeningStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< Updated upstream
-=======
-import org.springframework.format.annotation.DateTimeFormat;
-import at.htlgkr.htltestet.data.RegistrationData;
-import at.htlgkr.htltestet.pdf.RegistrationPDF;
->>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
