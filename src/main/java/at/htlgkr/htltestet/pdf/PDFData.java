@@ -1,16 +1,13 @@
 package at.htlgkr.htltestet.pdf;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.apache.pdfbox.pdmodel.PDDocument;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
-import at.htlgkr.htltestet.barcode.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 public abstract class PDFData {
     protected int id;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     protected LocalDateTime creationDate;
     public abstract byte[] createPDF() throws Exception;
 }

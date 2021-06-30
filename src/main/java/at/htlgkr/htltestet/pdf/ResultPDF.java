@@ -1,5 +1,7 @@
 package at.htlgkr.htltestet.pdf;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -20,13 +22,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ResultPDF extends PDFData{
+public class ResultPDF extends PDFData {
     private String firstname;
     private String lastname;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate birthdate;
     private String location;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime testingDate;
     private TestResult testResult;
+    @JsonIgnore
     private List<Line> lines;
 
 
