@@ -17,18 +17,18 @@
     <div class="border mb-3">
         <ul class="list-group location-list list-group-flush time-list" >
             <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                <input name="TimeId" type="number" hidden value="1"> 13:00</li>
+                <input name="TimeId" type="number" hidden value="1">13:00</li>
             <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                <input name="TimeId" type="number" hidden value="2"> 13:15</li>
+                <input name="TimeId" type="number" hidden value="2">13:15</li>
             <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                <input name="TimeId" type="number" hidden value="3"> 13:30</li>
+                <input name="TimeId" type="number" hidden value="3">13:30</li>
             <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                <input name="TimeId" type="number" hidden value="4"> 13:45</li>
+                <input name="TimeId" type="number" hidden value="4">13:45</li>
             <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                <input name="TimeId" type="number" hidden value="5"> 14:00</li>
+                <input name="TimeId" type="number" hidden value="5">14:00</li>
         </ul>
     </div>
-        <input id="selectedTimeSlot" required type="hidden" th:field="*{testDateTime}">
+        <input id="selectedTimeSlot" type="hidden" th:field="*{testDateTime}">
         <input id="firstname" type="hidden" th:field="*{firstname}">
         <input id="lastname" type="hidden" th:field="*{lastname}">
         <input id="birthdate" type="hidden" th:field="*{birthdate}">
@@ -46,7 +46,17 @@
 
     </form>
     <form th:action="@{screeningstation}" th:object="${registration}" method="post">
+        <input type="hidden" th:field="*{testDateTime}">
+        <input type="hidden" th:field="*{firstname}">
+        <input type="hidden" th:field="*{lastname}">
         <input type="hidden" th:field="*{birthdate}">
+        <input type="hidden" th:field="*{gender}">
+        <input type="hidden" th:field="*{street}">
+        <input type="hidden" th:field="*{streetNumber}">
+        <input type="hidden" th:field="*{plz}">
+        <input type="hidden" th:field="*{place}">
+        <input type="hidden" th:field="*{phoneNumber}">
+        <input type="hidden" th:field="*{email}">
         <input type="hidden" th:field="*{screeningStationId}">
     <button  class="btn btn-outline-primary float-start">Zurück</button>
     </form>
