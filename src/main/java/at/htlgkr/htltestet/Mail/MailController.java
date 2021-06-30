@@ -22,4 +22,9 @@ public class MailController {
         return "Mails/Terminbestatigung";
     }
 
+    @GetMapping("Mail/Result")
+    public String resultMail(Model model) {
+        return "Mails/ResultMail";
+    }
+
 }

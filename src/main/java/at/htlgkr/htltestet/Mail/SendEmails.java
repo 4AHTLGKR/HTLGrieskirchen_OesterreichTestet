@@ -1,11 +1,14 @@
 package at.htlgkr.htltestet.Mail;
 
 import at.htlgkr.htltestet.data.RegistrationData;
+import at.htlgkr.htltestet.pdf.ResultPDF;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 
+import javax.activation.DataHandler;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.mail.util.ByteArrayDataSource;
 import java.io.*;
 import java.util.Date;
 import java.util.Properties;
@@ -13,7 +16,7 @@ import java.util.Properties;
 public class SendEmails {
 
     private static final String URL = "http://localhost:8080";
-    private static void sendMail(String mailContent, String to) throws IOException {
+    private static void sendMail(String mailContent, String to, byte[] pdf) throws IOException {
 
 
 
@@ -36,12 +39,32 @@ public class SendEmails {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("austria.govcovidtest@gmail.com"));
 
-            //msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("Julian.m.schwaiger@gmail.com"));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSubject("Österreich testet");
 
-            msg.setContent(mailContent, "text/html");
+
             msg.setSentDate(new Date());
+
+            if(pdf!=null){
+                MimeBodyPart att = new MimeBodyPart();
+                ByteArrayDataSource bds = new ByteArrayDataSource(pdf, "PDF");
+                att.setDataHandler(new DataHandler(bds));
+                att.setFileName(bds.getName());
+
+                MimeBodyPart messagePart = new MimeBodyPart();
+                messagePart.setContent(mailContent, "text/html");
+
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(messagePart);
+                multipart.addBodyPart(att);
+
+
+                msg.setContent(multipart);
+            }
+            else{
+                msg.setContent(mailContent, "text/html");
+            }
+
             Transport.send(msg);
         }catch (Exception e){
             e.printStackTrace();
@@ -54,9 +77,22 @@ public class SendEmails {
 
         String mailContent = restTemplate.getForObject(URL +"/Mail/Registration", String.class);
         try{
-            sendMail(mailContent.replace("@authLink",URL+"/authentication?registrationId="+regis.getId()),regis.getEmail());
+            sendMail(mailContent.replace("@authLink",URL+"/authentication?registrationId="+regis.getId()),regis.getEmail(),null);
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void sendResultMail(ResultPDF rPDF, String mailTo){
+        RestTemplate restTemplate = new RestTemplate();
+
+        String mailContent = restTemplate.getForObject(URL +"/Mail/Result", String.class);
+
+        try{
+            sendMail(mailContent,mailTo,rPDF.createPDF());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
