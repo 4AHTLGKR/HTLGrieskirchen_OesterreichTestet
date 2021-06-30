@@ -1,0 +1,16 @@
+.spanner-item {
+    width: 3em;
+    height: 3em;
+    padding-top: 10px;
+}
+
+.location-list {
+    max-height: 250px;
+    overflow-y: scroll;
+    -webkit-overflow: touch;
+}
+
+.location-list>li.active {
+    background-color: #ccc;
+    color: #000;
+}
