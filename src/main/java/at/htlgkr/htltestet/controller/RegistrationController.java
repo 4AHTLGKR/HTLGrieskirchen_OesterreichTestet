@@ -26,4 +26,6 @@ public class RegistrationController {
     public String completed(Model model) {
         return "Booking/Completed";
     }
+
+
 }
