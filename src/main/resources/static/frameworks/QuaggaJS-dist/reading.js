@@ -192,7 +192,7 @@ $(function() {
             inputStream: {
                 type : "LiveStream",
                 constraints: {
-                    width: {min: 640},
+                    width: {min: 500},
                     height: {min: 480},
                     facingMode: "environment",
                     aspectRatio: {min: 1, max: 2}
@@ -232,15 +232,14 @@ $(function() {
     });
 
     Quagga.onDetected(function(result) {
+
         var code = result.codeResult.code;
+        console.log("Code read")
 
         if (App.lastResult !== code) {
             App.lastResult = code;
-            var $node = null,
 
-            $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
-            $node.find("h4.code").html(code);
-            $("#result_strip ul.thumbnails").prepend($node);
+            $("#inputCode").val(code);
         }
     });
 
