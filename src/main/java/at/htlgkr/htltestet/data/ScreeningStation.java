@@ -15,5 +15,5 @@ public class ScreeningStation {
     private String city;
     private int plz;
     private String street;
-    private String building;
+    private String name;
 }

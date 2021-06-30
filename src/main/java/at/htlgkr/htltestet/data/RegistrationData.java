@@ -36,14 +36,11 @@ public class RegistrationData {
     private String place;
     private String phoneNumber;
     private String email;
-
+    private int screeningStationId;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime testDateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "screening_station_id")
-    private ScreeningStation screeningStation;
 
-    public Integer getScreeningStationId(){return screeningStation.getId();}
+
 }
