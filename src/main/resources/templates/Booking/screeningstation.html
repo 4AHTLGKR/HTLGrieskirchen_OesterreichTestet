@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+    <title id="pageTitle">ScreeningStation</title>
+</head>
+<body class="mx-5">
+
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+    <h1>Screeningstation auswählen</h1>
+    <p>Bitte wählen Sie eine der verfügbaren Screeningstationen aus.</p>
+
+    <p class="text-muted">Bezirk:</p>
+
+    <select class="form-select">
+        <option selected>Alle</option>
+        <option value="Grieskirchen">Grieskirchen</option>
+    </select>
+
+<div class="border mb-3">
+    <ul class="list-group location-list list-group-flush screen-place" >
+        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="1">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="2">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"><input name="screeningStationId" type="number" hidden value="2"></div>
+        </li>
+        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="3">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="4">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        </li>
+    </ul>
+</div>
+
+    <form th:action="@{timeSlot}" th:object="${registration}" method="post">
+    <div>
+        <h3>Gewählte Screeningstation</h3>
+        <input id="birthdate" type="hidden" th:field="*{birthdate}">
+        <input id="selectedScreeningStationId" required type="hidden" th:value="${registration.screeningStationId}" th:field="*{screeningStationId}">
+        <div class="selected-screeningstation"></div>
+    </div>
+    <button type="submit" class="btn btn-primary float-end">Weiter</button>
+    </form>
+    <form th:action="@{start}" th:object="${registration}" method="get">
+        <button  class="btn btn-outline-primary float-start">Zurück</button>
+    </form>
+    <div th:insert="fragments/layout :: footerFragment (currentpage = 2, percent = 37.5)"></div>
+</div>
+
+<div th:insert="fragments/layout :: scripts">
+
+
+</div>
+<script th:src="@{/JS/script.js}"></script>
+</body>
+</html>

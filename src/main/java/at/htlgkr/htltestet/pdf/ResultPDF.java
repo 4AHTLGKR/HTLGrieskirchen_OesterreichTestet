@@ -1,11 +1,20 @@
 package at.htlgkr.htltestet.pdf;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,13 +29,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ResultPDF extends PDFData{
+public class ResultPDF extends PDFData {
     private String firstname;
     private String lastname;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthdate;
     private String location;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime testingDate;
     private TestResult testResult;
+    @JsonIgnore
     private List<Line> lines;
 
 
@@ -37,7 +51,8 @@ public class ResultPDF extends PDFData{
         result.addPage(new PDPage());
         PDPageContentStream pdcs = new PDPageContentStream(result, result.getPage(0));
 
-        BufferedImage bi = ImageIO.read(new File("src\\main\\resources\\Images\\Logo_HTLBA_Grieskirchen_Big.png"));
+
+        BufferedImage bi = ImageIO.read(ResourceUtils.getFile("classpath:Images/Logo_HTLBA_Grieskirchen_Big.png"));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, "png", baos);
         byte[] bytes = baos.toByteArray();
