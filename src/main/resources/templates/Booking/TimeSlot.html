@@ -10,45 +10,36 @@
     <h1>Buchen Sie Ihren Testtermin</h1>
     <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
 
-    <select class="form-select my-2">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
+    <form th:action="@{completed}" th:object="${registration}" method="post">
+
+    <input id="dateSlot" required type="date" class="form-select my-2"/>
 
     <div class="border mb-3">
-        <ul class="list-group location-list list-group-flush" >
-            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                13:00
-                <span class="badge text-muted my-2">!</span>
-            </li>
-            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                13:15
-                <span class="badge text-muted my-2">!</span>
-            </li>
-            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                13:30
-                <span class="badge text-muted my-2">!</span>
-            </li>
-            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                13:45
-                <span class="badge text-muted my-2">!</span>
-            </li>
-            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
-                14:00
-                <span class="badge text-muted my-2">!</span>
-            </li>
+        <ul class="list-group location-list list-group-flush time-list" >
+            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">13:00</li>
+            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">13:15</li>
+            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">13:30</li>
+            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">13:45</li>
+            <li class="list-group-item text-muted d-flex justify-content-between align-items-center">14:00</li>
         </ul>
     </div>
+        <input id="selectedTimeSlot" required type="hidden" th:field="*{testDateTime}">
+        <input id="birthdate" type="hidden" th:field="*{birthdate}">
+        <input id="selectedScreeningStationId" type="hidden" th:field="*{screeningStationId}">
 
-    <button class="btn btn-outline-primary">Zurück</button>
-    <button class="btn btn-primary float-end">Buchung abschließen</button>
 
+    <button type="submit" class="btn btn-primary float-end">Buchung abschließen</button>
+
+    </form>
+    <form th:action="@{screeningstation}" th:object="${registration}" method="post">
+        <input type="hidden" th:field="*{birthdate}">
+        <input type="hidden" th:field="*{screeningStationId}">
+    <button  class="btn btn-outline-primary float-start">Zurück</button>
+    </form>
     <div th:insert="fragments/layout :: footerFragment (currentpage = 3, percent = 62.5)"></div>
 </div>
 
 <div th:insert="fragments/layout :: scripts"></div>
-
+<script th:src="@{/JS/script.js}"></script>
 </body>
 </html>
