@@ -22,9 +22,9 @@
   </div>
 
   <!--WIP-->
-  <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = *{screening_station.name}, locationCity = *{screening_station.city}, locationStreet = *{screening_station.street})"></div>
+  <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = *{screening_station.name}, locationCity =*{screening_station.plz + ' ' + screening_station.city}, locationStreet = *{screening_station.street})"></div>
 
-  <div style="margin:10px" th:insert="fragments/calender :: calenderFragment (date = *{registration.testDateTime}, time = *{registration.testDateTime})"></div>
+  <div style="margin:10px" th:insert="fragments/calendar :: calendarFragment (date = *{registration.testDateTime.toLocalDate()}, time = *{registration.testDateTime.toLocalTime()})"></div>
 
 
   <button class="btn btn-primary">Termin stornieren</button>
