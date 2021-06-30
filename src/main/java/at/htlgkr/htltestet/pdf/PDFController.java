@@ -3,10 +3,8 @@ package at.htlgkr.htltestet.pdf;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 
 @Controller
@@ -14,7 +12,7 @@ import java.io.IOException;
 public class PDFController {
 
     @RequestMapping(produces = MediaType.APPLICATION_PDF_VALUE, method = RequestMethod.POST, value = "/pdf/result")
-    public byte[] getResult(@RequestBody ResultPDF result){
+    public @ResponseBody byte[] getResult(@RequestBody ResultPDF result){
         try {
             return result.createPDF();
         } catch (IOException e) {
@@ -24,7 +22,7 @@ public class PDFController {
     }
 
     @RequestMapping(produces = MediaType.APPLICATION_PDF_VALUE, method = RequestMethod.POST, value = "/pdf/registration")
-    public byte[] getRegistration(@RequestBody RegistrationPDF registration){
+    public @ResponseBody byte[] getRegistration(@RequestBody RegistrationPDF registration){
 
         try {
             return registration.createPDF();
