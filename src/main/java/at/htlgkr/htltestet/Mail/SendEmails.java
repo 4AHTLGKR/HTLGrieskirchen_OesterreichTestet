@@ -37,7 +37,7 @@ public class SendEmails {
             msg.setFrom(new InternetAddress("austria.govcovidtest@gmail.com"));
 
             //msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("Julian.m.schwaiger@gmail.com"));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSubject("Österreich testet");
 
             msg.setContent(mailContent, "text/html");

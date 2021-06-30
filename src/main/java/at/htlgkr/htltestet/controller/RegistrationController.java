@@ -3,13 +3,18 @@ package at.htlgkr.htltestet.controller;
 import at.htlgkr.htltestet.Mail.SendEmails;
 import at.htlgkr.htltestet.data.RegistrationData;
 import at.htlgkr.htltestet.data.RegistrationDataRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 public class RegistrationController {
@@ -44,9 +49,17 @@ public class RegistrationController {
         return "Booking/Completed";
     }
 
+    /*Site to which the button in the appointment confirmation email leads.
+    * This site confirms your identity via birthdate and forwards you to details*/
+
     @GetMapping("authentication")
     public String authentication(@RequestParam int registrationId, Model model) {
         model.addAttribute("registrationId", registrationId);
         return "Booking/Authentication";
+    }
+
+    @GetMapping("details")
+    public String details(@RequestParam LocalDate birthdate, @RequestParam int registrationId) {
+        return "Booking/Details";
     }
 }
