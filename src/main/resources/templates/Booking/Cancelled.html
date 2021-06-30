@@ -10,9 +10,9 @@
 <div class="container-md">
     <h1>Ihr COVID19 Screening-Termin</h1>
 
-    <div>Ihr Termin wurde storniert.</div>
+    <div class="alert alert-success">Ihr Termin wurde storniert.</div>
 
-    <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
+    <div th:insert="fragments/layout :: footerWithoutCurrentPageFragment"></div>
 </div>
 
 <div th:insert="fragments/layout :: scripts"></div>

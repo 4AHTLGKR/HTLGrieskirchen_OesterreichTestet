@@ -57,6 +57,9 @@ public class RegistrationController {
         return "Booking/AppointmentVerification";
     }
 
+    /**This endpoint is called if the cancellation
+     * of the appointment was successful*/
+
     @GetMapping("cancelled")
     public String cancelled() {
         return "Booking/Cancelled";
