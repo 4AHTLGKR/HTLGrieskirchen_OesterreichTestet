@@ -28,11 +28,10 @@ import java.util.List;
 public class RegistrationPDF extends PDFData {
     private String screeningStation;
     private String code;
-    private byte[] barcode;
 
     @Override
     public byte[] createPDF() throws Exception {
-        barcode = BarcodeController.getBarcodeStatic(code, 50);
+        byte[] barcode = BarcodeController.getBarcodeStatic(code, 50);
         PDDocument registration = new PDDocument();
         PDPage page = new PDPage();
         registration.addPage(page);
