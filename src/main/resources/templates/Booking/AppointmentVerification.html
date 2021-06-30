@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+  <title id="pageTitle">AppointmentVerification</title>
+</head>
+<body class="mx-5">
+
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+  <h1>Ihr COVID19 Screening-Termin</h1>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <img class="card-img-top" th:src="|/barcode?code=*{registrationPDF.code}|" />
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title" th:text="*{registrationPDF.code}"></h5>
+
+      <p class="card-text">Fortlaufende Lauzettel Nummer</p>
+    </div>
+  </div>
+
+  <!--WIP-->
+  <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = *{registrationPDF.screeningStation}, locationCity = *{registrationPDF.screeningStation}, locationStreet = *{registrationPDF.screeningStation})"></div>
+
+  <div style="margin:10px" th:insert="fragments/calender :: calenderFragment (date = *{testDate}, time = '12:30')"></div>
+
+
+  <button class="btn btn-primary">Termin stornieren</button>
+  <button class="btn btn-primary">Laufzettel herunterladen</button>
+
+  </div>
+<div th:insert="fragments/layout :: scripts">
+
+</div>
+</body>
+</html>
