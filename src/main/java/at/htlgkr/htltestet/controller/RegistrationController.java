@@ -3,11 +3,9 @@ package at.htlgkr.htltestet.controller;
 import at.htlgkr.htltestet.Mail.SendEmails;
 import at.htlgkr.htltestet.data.RegistrationData;
 import at.htlgkr.htltestet.data.RegistrationDataRepository;
-import org.apache.tomcat.jni.Local;
+import at.htlgkr.htltestet.data.ScreeningStation;
+import at.htlgkr.htltestet.data.ScreeningStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import at.htlgkr.htltestet.data.Registration;
-import at.htlgkr.htltestet.pdf.RegistrationPDF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 @Controller
 public class RegistrationController {
 
     @Autowired
     private RegistrationDataRepository registrationDataRepository;
+
+    @Autowired
+    private ScreeningStationRepository screeningStationRepository;
 
     @GetMapping("start")
     public String start(Model model) {
@@ -61,14 +58,11 @@ public class RegistrationController {
         return "Booking/Authentication";
 
     @GetMapping("appointment")
-    public String appointment(@ModelAttribute("registration") Registration registration, Model model, @ModelAttribute("registrationPDF") RegistrationPDF registrationPDF) {
+    public String appointment(@ModelAttribute("registration") RegistrationData registration, Model model) {
         model.addAttribute("registration", registration);
-        RegistrationPDF rpdf = new RegistrationPDF();
-        rpdf.setCode((int)(Math.random()*10000000) + "");
-        rpdf.setScreeningStation("Schulzentrum - Raiffeisen Arena, Grieskirchen \n 4710 Grieskirchen \n Parzer Schulstraße 1");
-        model.addAttribute("registrationPDF", rpdf);
-        registration.setTestDateTime(LocalDateTime.of(LocalDate.of(2021, 6, 30),LocalTime.of(12,47)));
-        model.addAttribute("testDate", registration.testDateTime.toLocalDate());
+        int screeningStationId = registration.getScreeningStationId();
+        ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
+        model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
     }
 }
