@@ -14,13 +14,9 @@
 
 </div>
 
-<div th:fragment="footerFragment" class="navbar fixed-bottom">
+<div th:fragment="footerFragment">
     <div class="d-block w-100 container" th:insert="fragments/spanner :: spannerFragment(currentpage = ${currentpage}, percent = ${percent})"></div>
-    <div class="border-top border-secondary border-2 bg-light d-block w-100">
-        <div class="container py-3">
-            HTBLA Grieskirchen
-        </div>
-    </div>
+    <div th:include="fragments/layout :: footerWithoutCurrentPageFragment"></div>
 </div>
 
 <div th:fragment="footerWithoutCurrentPageFragment" class="navbar fixed-bottom">
