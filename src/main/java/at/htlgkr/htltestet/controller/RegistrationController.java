@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 @Controller
 public class RegistrationController {
 
     @Autowired
     private RegistrationDataRepository registrationDataRepository;
+
+    @Autowired
+    private ScreeningStationRepository screeningStationRepository;
 
     @GetMapping("start")
     public String start(Model model) {
@@ -49,8 +48,11 @@ public class RegistrationController {
     }
 
     @GetMapping("appointment")
-    public String appointment(@ModelAttribute("registration") RegistrationData registration, Model model, @ModelAttribute("registrationPDF") RegistrationPDF registrationPDF) {
+    public String appointment(@ModelAttribute("registration") RegistrationData registration, Model model) {
         model.addAttribute("registration", registration);
+        int screeningStationId = registration.getScreeningStationId();
+        ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
+        model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
     }
 }
