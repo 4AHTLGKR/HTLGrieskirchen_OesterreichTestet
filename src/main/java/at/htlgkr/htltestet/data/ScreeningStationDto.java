@@ -7,7 +7,7 @@ import java.util.ArrayList;
 @Data
 public class ScreeningStationDto {
     private String city;
-    private String plz;
+    private int plz;
     private String street;
     private String name;
 
@@ -16,7 +16,7 @@ public class ScreeningStationDto {
         screeningStation.setName(getName());
         screeningStation.setCity(getCity());
         screeningStation.setStreet(getStreet());
-        screeningStation.setPlz(Integer.parseInt(getPlz()));
+        screeningStation.setPlz(getPlz());
         return screeningStation;
     }
 }

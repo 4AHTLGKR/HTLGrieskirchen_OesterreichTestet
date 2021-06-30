@@ -1,2 +1,1 @@
 INSERT INTO screeningstations (`id`, `city`,`plz`,`street`,`name`) VALUES ('0', 'Grieskirchen', '4710', 'Parzer Schulstraße 1', 'Schulzentrum - Raiffeisen Arena, Grieskirchen');
-INSERT INTO screeningstations (`id`, `city`,`plz`,`street`,`name`) VALUES ('1', 'Ampflwang', '4843', 'Lukas Mayrhuber Straße 5', 'Mayrhubers Haus');

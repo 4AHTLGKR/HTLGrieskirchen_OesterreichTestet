@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ScreeningStationController {
 
 private final ScreeningStationRepository screeningStationRepository;
@@ -23,15 +23,15 @@ public ScreeningStationController(ScreeningStationRepository screeningStationRep
         return screeningStationRepository.findAll();
     }
 
-    @GetMapping("/screeningStation/{screeningStationId}")
+    @GetMapping("/screeningStation/{scrId}")
     @ResponseBody
     Optional<ScreeningStation> getScreeningStation(@PathVariable Integer scrId) {
         return screeningStationRepository.findById(scrId);
     }
 
-    @PostMapping("/serviceBackend/employees")
+    @PostMapping("/screeningStation")
     @ResponseBody
-    ScreeningStation postEmployee(@RequestBody ScreeningStationDto screeningStation) {
+    ScreeningStation postScreeningStation(@RequestBody ScreeningStationDto screeningStation) {
         return screeningStationRepository.save(screeningStation.toScreeningStation());
     }
 }
