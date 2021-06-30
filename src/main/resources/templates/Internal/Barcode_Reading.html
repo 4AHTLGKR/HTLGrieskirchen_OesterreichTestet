@@ -19,10 +19,17 @@
                 </label>
         </div>
       <div id="result_strip">
-        <ul class="thumbnails"></ul>
-        <ul class="collector"></ul>
+
+         <br>
+          <div class="form-group">
+              <label for="inputCode">Authentification Code</label>
+              <input type="text" class="form-control" id="inputCode"  placeholder="Enter code">
+              <small id="emailHelp" class="form-text text-muted">Enter code manually if BarCode-Reader doesn't work</small>
+          </div>
+          <div id="interactive" class="viewport"></div>
+
       </div>
-      <div id="interactive" class="viewport"></div>
+
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"
@@ -30,6 +37,8 @@
     <script src="//webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
     <script th:src="@{/frameworks/QuaggaJS-dist/quagga.js}" type="text/javascript"></script>
     <script th:src="@{/frameworks/QuaggaJS-dist/reading.js}" type="text/javascript"></script>
+
+
 
   <div th:insert="fragments/layout :: footerWithoutCurrentPageFragment"></div>
 
