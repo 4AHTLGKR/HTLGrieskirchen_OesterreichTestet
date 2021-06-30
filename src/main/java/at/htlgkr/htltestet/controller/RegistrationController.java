@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,6 +49,12 @@ public class RegistrationController {
         registrationDataRepository.save(registration);
         return "Booking/Completed";
     }
+
+
+    @GetMapping("authentication")
+    public String authentication(@RequestParam int registrationId, Model model) {
+        model.addAttribute("registrationId", registrationId);
+        return "Booking/Authentication";
 
     @GetMapping("appointment")
     public String appointment(@ModelAttribute("registration") Registration registration, Model model, @ModelAttribute("registrationPDF") RegistrationPDF registrationPDF) {
