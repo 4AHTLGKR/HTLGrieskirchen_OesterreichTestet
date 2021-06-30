@@ -11,7 +11,8 @@ import java.io.ByteArrayOutputStream;
 @Controller
 public class BarcodeController {
     @RequestMapping(produces = MediaType.IMAGE_JPEG_VALUE, method = RequestMethod.GET, value = "/barcode")
-    public @ResponseBody byte[] getBarcode(@RequestParam String code, @RequestParam(defaultValue = "50") int height) throws Exception {
+    public @ResponseBody
+    byte[] getBarcode(@RequestParam String code, @RequestParam(defaultValue = "50") int height) throws Exception {
         return getBarcodeStatic(code, height);
     }
 
