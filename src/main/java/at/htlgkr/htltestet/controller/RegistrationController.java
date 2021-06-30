@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RegistrationController {
@@ -33,5 +34,11 @@ public class RegistrationController {
 
         model.addAttribute("registration", registration);
         return "Booking/Completed";
+    }
+
+    @GetMapping("authentication")
+    public String authentication(@RequestParam int registrationId, Model model) {
+        model.addAttribute("registrationId", registrationId);
+        return "Booking/Authentication";
     }
 }
