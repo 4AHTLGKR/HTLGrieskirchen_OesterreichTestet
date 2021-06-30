@@ -56,4 +56,9 @@ public class RegistrationController {
         model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
     }
+
+    @GetMapping("cancelled")
+    public String cancelled() {
+        return "Booking/Cancelled";
+    }
 }
