@@ -34,7 +34,4 @@ public class RegistrationController {
         model.addAttribute("registration", registration);
         return "Booking/Completed";
     }
-
-
-
 }
