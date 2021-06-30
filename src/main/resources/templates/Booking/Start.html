@@ -9,25 +9,97 @@
 
 <div class="container-md">
     <h1>Anmeldung zum Covid-19 Schnelltest</h1>
-    <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
-    <p>Bitte geben Sie Ihr Geburtsdatum ein.</p>
+    <p>Bitte geben Sie Ihre Anmeldeinformationen ein.</p>
 
-    <div>
-        <label>Geburtsdatum:</label>
+    <form th:action="@{screeningstation}" th:object="${registration}" method="post">
+        <div>
+            <div class="row">
+                <div class="col"><label>Vorname:</label></div>
+                <div class="col"><label>Nachname:</label></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="firstname" required type="text" th:field="*{firstname}"></div>
+                <div class="col">
+                    <input class="form-control" id="lastname" required type="text" th:field="*{lastname}">
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <label>Geburtsdatum:</label>
+                </div>
+                <div class="col">
+                    <label>Geschlecht:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="birthdate" required type="date" th:field="*{birthdate}">
+                </div>
+                <div class="col">
+                    <select class="form-select" id="gender" required th:field="*{gender}">
+                        <option th:each="genderOpt : ${T(at.htlgkr.htltestet.data.Gender).values()}"
+                                th:value="${genderOpt}" th:text="${genderOpt.getGender()}"></option>
+                    </select>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <label>Straße:</label></div>
+                <div class="col">
+                    <label>Hausnummer:</label></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="street" required type="text" th:field="*{street}"></div>
+                <div class="col">
+                    <input class="form-control" id="streetNumber" required type="number" th:field="*{streetNumber}"></div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <label>PLZ:</label></div>
+                <div class="col">
+                    <label>Ort:</label></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="plz" required type="number" th:field="*{plz}"></div>
+                <div class="col">
+                    <input class="form-control" id="place" required type="text" th:field="*{place}"></div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <label>Telefonnummer:</label></div>
+                <div class="col">
+                    <label>Email:</label></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="phoneNumber" required type="tel" th:field="*{phoneNumber}"></div>
+                <div class="col">
+                    <input class="form-control" id="email" required type="tel" th:field="*{email}"></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 float-end">Bestätigen</button>
         <br>
-        <input type="date">
-    </div>
-
-    <button class="btn btn-primary mt-3 float-end">Bestätigen</button>
-    <br>
-
+        <br>
+    </form>
 
 
     <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
 </div>
 
 <div th:insert="fragments/layout :: scripts"></div>
-
+<script th:src="@{/JS/script.js}"></script>
 
 </body>
 </html>

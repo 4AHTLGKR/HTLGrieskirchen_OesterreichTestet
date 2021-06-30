@@ -14,37 +14,53 @@
     <p class="text-muted">Bezirk:</p>
 
     <select class="form-select">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected>Alle</option>
+        <option value="Grieskirchen">Grieskirchen</option>
     </select>
 
 <div class="border mb-3">
-    <ul class="list-group location-list list-group-flush" >
+    <ul class="list-group location-list list-group-flush screen-place" >
         <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="1">
             <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
         </li>
         <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="2">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"><input name="screeningStationId" type="number" hidden value="2"></div>
+        </li>
+        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="3">
             <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
         </li>
         <li class="list-group-item">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
-        </li>
-        <li class="list-group-item">
+            <input name="screeningStationId" type="number" hidden value="4">
             <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
         </li>
     </ul>
 </div>
 
+    <form th:action="@{timeSlot}" th:object="${registration}" method="post">
     <div>
         <h3>Gewählte Screeningstation</h3>
-        <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        <input id="firstname" type="hidden" th:field="*{firstname}">
+        <input id="lastname" type="hidden" th:field="*{lastname}">
+        <input id="birthdate" type="hidden" th:field="*{birthdate}">
+        <input id="gender" type="hidden" th:field="*{gender}">
+        <input id="street" type="hidden" th:field="*{street}">
+        <input id="streetNumber" type="hidden" th:field="*{streetNumber}">
+        <input id="plz" type="hidden" th:field="*{plz}">
+        <input id="place" type="hidden" th:field="*{place}">
+        <input id="phoneNumber" type="hidden" th:field="*{phoneNumber}">
+        <input id="email" type="hidden" th:field="*{email}">
+
+        <input id="selectedScreeningStationId" required type="hidden" th:value="${registration.screeningStationId}" th:field="*{screeningStationId}">
+        <div class="selected-screeningstation"></div>
     </div>
-
-
-
-    <button class="btn btn-primary float-end">Weiter</button>
+    <button type="submit" class="btn btn-primary float-end">Weiter</button>
+    </form>
+    <form th:action="@{start}" th:object="${registration}" method="get">
+        <button  class="btn btn-outline-primary float-start">Zurück</button>
+    </form>
     <div th:insert="fragments/layout :: footerFragment (currentpage = 2, percent = 37.5)"></div>
 </div>
 
@@ -52,5 +68,6 @@
 
 
 </div>
+<script th:src="@{/JS/script.js}"></script>
 </body>
 </html>
