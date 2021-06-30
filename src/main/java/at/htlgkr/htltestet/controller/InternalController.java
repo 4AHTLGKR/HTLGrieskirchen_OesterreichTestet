@@ -11,4 +11,9 @@ public class InternalController {
     public String barcode_reading(Model model) {
         return "Internal/Barcode_Reading";
     }
+
+    @GetMapping("enter_result")
+    public String enter_result(Model model) {
+        return "Enter_Result";
+    }
 }
