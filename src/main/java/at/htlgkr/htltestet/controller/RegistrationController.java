@@ -56,7 +56,7 @@ public class RegistrationController {
         model.addAttribute("registrationId", registrationId);
         return "Booking/Authentication";
     }
-    /*@GetMapping("appointment")
+    @GetMapping("appointment")
     public String appointment(@ModelAttribute("registration") Registration registration, Model model, @ModelAttribute("registrationPDF") RegistrationPDF registrationPDF) {
         model.addAttribute("registration", registration);
         RegistrationPDF rpdf = new RegistrationPDF();
@@ -66,5 +66,5 @@ public class RegistrationController {
         registration.setTestDateTime(LocalDateTime.of(LocalDate.of(2021, 6, 30),LocalTime.of(12,47)));
         model.addAttribute("testDate", registration.testDateTime.toLocalDate());
         return "Booking/AppointmentVerification";
-    }*/
+    }
 }
