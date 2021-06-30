@@ -1,21 +1,30 @@
 package at.htlgkr.htltestet.Mail;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.Properties;
 
 public class SendEmails {
 
-    private static final String FROM = "austria.govcovidtest@gmail.com";
-    private static final String PASS = "Abcd.1234";
-    public static void sendMail() {
+    /*private static final String FROM = "austria.govcovidtest@gmail.com";
+    private static final String PASS = "Abcd.1234";*/
+
+    public static void sendMail() throws IOException {
 
         String url = "http://localhost:8080/Mail/Registration";
+
+        File authFile = ResourceUtils.getFile("classpath:email/auth.txt");
+        BufferedReader br = new BufferedReader(new FileReader(authFile));
+
+        final String FROM = br.readLine();
+        final String PASS = br.readLine();
+
+
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
