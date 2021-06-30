@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+    <title id="pageTitle">Authentication</title>
+</head>
+<body class="mx-5">
+
+<div th:insert="fragments/navbar :: navbarFragment"></div>
+
+<div class="container-md">
+    <h1>Ihr COVID19 Screening-Termin</h1>
+    <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
+    <p>Bitte geben Sie Ihr Geburtsdatum ein.</p>
+
+    <form th:action="@{screeningstation}" th:object="${registration}" method="post">
+        <div>
+            <label>Geburtsdatum:</label>
+            <br>
+            <input id="birthdate" required type="date" th:field="*{birthdate}">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 float-end">Bestätigen</button>
+        <br>
+    </form>
+
+
+    <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
+</div>
+
+<div th:insert="fragments/layout :: scripts"></div>
+<script th:src="@{/JS/script.js}"></script>
+
+</body>
+</html>
