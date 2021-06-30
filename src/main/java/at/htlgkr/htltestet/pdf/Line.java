@@ -9,6 +9,4 @@ public class Line {
     private PDFont font;
     private float fontSize;
     private boolean has2LinesNothing;
-    //private int xPosition = 50;
-    //private int yPosition = 750;
 }

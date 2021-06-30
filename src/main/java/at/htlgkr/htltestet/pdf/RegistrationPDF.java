@@ -25,13 +25,13 @@ import java.io.IOException;
 import java.util.List;
 
 @Data
-public class Registration extends PDFData {
+public class RegistrationPDF extends PDFData {
     private String screeningStation;
     private String code;
     private byte[] barcode;
 
     @Override
-    public PDDocument createPDF() throws Exception {
+    public byte[] createPDF() throws Exception {
         barcode = BarcodeController.getBarcodeStatic(code, 50);
         PDDocument registration = new PDDocument();
         PDPage page = new PDPage();
@@ -50,7 +50,6 @@ public class Registration extends PDFData {
 
         pdImage = PDImageXObject.createFromByteArray(registration, barcode, "");
 
-        int lol = code.length();
 
         pdcs.drawImage(pdImage, 385, 700);
 
@@ -86,7 +85,7 @@ public class Registration extends PDFData {
         pdcs.beginText();
         pdcs.setLeading(14.5f);
         pdcs.newLineAtOffset(30, 690);
-        for(int i = 0; i < 57-lol; ++i)
+        for(int i = 0; i < 57-code.length(); ++i)
         {
             code = " " + code;
         }
@@ -149,9 +148,10 @@ public class Registration extends PDFData {
 
         pdcs.endText();
         pdcs.close();
-        registration.save("src\\main\\resources\\PDFS\\Registration.pdf");
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        registration.save(bao);
         registration.close();
-        return registration;
+        return bao.toByteArray();
     }
 
     private void addTextField(int x, int y, int width, int height, PDDocument registration) throws IOException {

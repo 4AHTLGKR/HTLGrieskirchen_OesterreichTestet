@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Result extends PDFData{
+public class ResultPDF extends PDFData{
     private String firstname;
     private String lastname;
     private LocalDate birthdate;
@@ -31,7 +31,7 @@ public class Result extends PDFData{
 
 
     @Override
-    public PDDocument createPDF() throws IOException {
+    public byte[] createPDF() throws IOException {
         fillContent();
         PDDocument result = new PDDocument();
         result.addPage(new PDPage());
@@ -60,9 +60,10 @@ public class Result extends PDFData{
         }
         pdcs.endText();
         pdcs.close();
-        result.save("src\\main\\resources\\PDFS\\Result.pdf");
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        result.save(bao);
         result.close();
-        return result;
+        return bao.toByteArray();
     }
 
 

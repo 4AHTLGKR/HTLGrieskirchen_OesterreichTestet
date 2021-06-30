@@ -12,5 +12,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class PDFData {
     protected int id;
     protected LocalDateTime creationDate;
-    public abstract PDDocument createPDF() throws Exception;
+    public abstract byte[] createPDF() throws Exception;
 }
