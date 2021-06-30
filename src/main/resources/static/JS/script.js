@@ -16,6 +16,6 @@ $('#dateSlot').on('input', function(){
 
 function changeDateTime()
 {
-    $("#selectedTimeSlot").val($(".active").children('input').first().val());
+    $("#selectedTimeSlot").val($('#dateSlot').val().trim() + " " + $(".active").text().trim());
 
 }

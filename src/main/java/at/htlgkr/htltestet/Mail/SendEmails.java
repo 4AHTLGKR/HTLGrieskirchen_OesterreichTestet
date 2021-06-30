@@ -1,5 +1,6 @@
 package at.htlgkr.htltestet.Mail;
 
+import at.htlgkr.htltestet.data.RegistrationData;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,12 +12,10 @@ import java.util.Properties;
 
 public class SendEmails {
 
-    /*private static final String FROM = "austria.govcovidtest@gmail.com";
-    private static final String PASS = "Abcd.1234";*/
+    private static final String URL = "http://localhost:8080";
+    private static void sendMail(String mailContent, String to) throws IOException {
 
-    public static void sendMail() throws IOException {
 
-        String url = "http://localhost:8080/Mail/Registration";
 
         File authFile = ResourceUtils.getFile("classpath:email/auth.txt");
         BufferedReader br = new BufferedReader(new FileReader(authFile));
@@ -37,17 +36,27 @@ public class SendEmails {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("austria.govcovidtest@gmail.com"));
 
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("placeholder")); //Hier mail von benutzer hinzufügen
+            //msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSubject("Österreich testet");
 
-            RestTemplate restTemplate = new RestTemplate();
-
-            msg.setContent(restTemplate.getForObject(url, String.class), "text/html");
+            msg.setContent(mailContent, "text/html");
             msg.setSentDate(new Date());
             Transport.send(msg);
         }catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    public static void sendRegistrationMail(RegistrationData regis){
+        RestTemplate restTemplate = new RestTemplate();
+
+        String mailContent = restTemplate.getForObject(URL +"/Mail/Registration", String.class);
+        try{
+            sendMail(mailContent.replace("@authLink",URL+"/authentication?registrationId="+regis.getId()),regis.getEmail());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
