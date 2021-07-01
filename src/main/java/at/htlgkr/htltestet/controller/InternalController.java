@@ -38,14 +38,14 @@ public class InternalController {
 
         List<RegistrationData> registrationDataList;
 
-
-        registrationDataList = this.getRegistrations().stream().filter(x->!x.isTested()).collect(Collectors.toList());
+        registrationDataList = this.getRegistrations().stream().filter(x->!x.getIsTested()).collect(Collectors.toList());
 
         if(registrationDataList.isEmpty()){
             logger.warning("List is empty");
         }
 
         model.addAttribute("list", registrationDataList);
+        model.addAttribute("changedRegistration", new RegistrationData());
 
         return "Internal/Enter_Result";
     }
@@ -59,7 +59,7 @@ public class InternalController {
     public String enterResultTwo(@ModelAttribute("list")List<RegistrationData> ts, Model model) {
 
         for(RegistrationData rd : ts){
-            if(rd.isTested() && rd.getTestResult()!=null) {
+            if(rd.getIsTested() && rd.getTestResult()!=null) {
                 ResultPDF pdf = ResultPDF.ConvertRegistrationToPdf(rd);
                 new Thread(() -> SendEmails.sendResultMail(pdf,rd.getEmail())).start();
                 registrationDataRepository.save(rd);

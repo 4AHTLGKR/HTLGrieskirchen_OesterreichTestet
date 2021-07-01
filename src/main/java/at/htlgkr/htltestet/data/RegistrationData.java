@@ -42,6 +42,15 @@ public class RegistrationData {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime testDateTime;
 
+
+    public boolean getIsTested() {
+        return isTested;
+    }
+
+    public void setIsTested(boolean tested) {
+        isTested = tested;
+    }
+
     private boolean isTested;
     private TestResult testResult;
 

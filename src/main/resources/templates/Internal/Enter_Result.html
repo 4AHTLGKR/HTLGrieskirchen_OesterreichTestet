@@ -14,7 +14,7 @@
   <section id="container" class="container">
 
     <div class="card" style="width: 40rem;">
-      <form th:action="@{enter_result}" method="post" th:object="${list}">
+      <form  th:action="@{enter_result}" th:object="${changedRegistration}" method="post">
         <table class="table">
           <tbody>
 
@@ -22,22 +22,23 @@
               <th th:text="${reg.id}"></th>
               <td>
                 <div class="form-check">
-                  <!--<input class="form-check-input" type="checkbox" id="defaultCheck1" th:field="${reg.isTested}">-->
+                  <input class="form-check-input" type="checkbox" id="defaultCheck1" th:field="*{isTested}">
                 </div>
               </td>
               <td th:text="${reg.firstname} + ' ' + ${reg.lastname}"></td>
+
               <td>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio11" value="POSITIV" th:field="*{reg.testResult}">
-                  <label class="form-check-label" for="inlineRadio11">P</label>
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="testResultP" value="POSITIV" th:field="*{testResult}">
+                  <label class="form-check-label" for="testResultP">P</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio12" value="NEGATIV" th:field="*{reg.testResult}">
-                  <label class="form-check-label" for="inlineRadio12">N</label>
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="testResultN" value="NEGATIV" th:field="*{testResult}">
+                  <label class="form-check-label" for="testResultN">N</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio13" value="INVALID" th:field="*{reg.testResult}">
-                  <label class="form-check-label" for="inlineRadio13">U</label>
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="testResultI" value="INVALID" th:field="*{testResult}">
+                  <label class="form-check-label" for="testResultI">U</label>
                 </div>
               </td>
             </tr>
