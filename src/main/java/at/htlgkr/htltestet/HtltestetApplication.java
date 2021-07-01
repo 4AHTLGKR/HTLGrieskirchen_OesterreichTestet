@@ -15,16 +15,20 @@ public class HtltestetApplication {
     private static String fromMail;
     private static String passMail;
     private static String jwtSecret;
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         SpringApplication.run(HtltestetApplication.class, args);
 
-        File authFile = ResourceUtils.getFile("classpath:email/auth.txt");
-        BufferedReader br = new BufferedReader(new FileReader(authFile));
+        try {
+            File authFile = ResourceUtils.getFile("classpath:email/auth.txt");
+            BufferedReader br = new BufferedReader(new FileReader(authFile));
 
-        fromMail = br.readLine();
-        passMail = br.readLine();
-        jwtSecret = br.readLine();
+            fromMail = br.readLine();
+            passMail = br.readLine();
+            jwtSecret = br.readLine();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     public static String getFromMail() {
