@@ -65,4 +65,12 @@ public class RegistrationController {
         model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
     }
+
+    /**This endpoint is called if the cancellation
+     * of the appointment was successful*/
+
+    @GetMapping("cancelled")
+    public String cancelled(Model model) {
+        return "Booking/Cancelled";
+    }
 }
