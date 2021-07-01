@@ -14,37 +14,37 @@
   <section id="container" class="container">
 
     <div class="card" style="width: 40rem;">
+      <form th:action="@{enter_result}" method="post" th:object="${list}">
+        <table class="table">
+          <tbody>
 
-    <table class="table">
-      <tbody>
-
-      <tr th:each="reg : ${list}">
-        <th th:text="${reg.id}"></th>
-        <td>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          </div>
-        </td>
-        <td th:text="${reg.firstname} + ' ' + ${reg.lastname}"></td>
-        <td>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio11" value="option1">
-            <label class="form-check-label" for="inlineRadio11">P</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio12" value="option2">
-            <label class="form-check-label" for="inlineRadio12">N</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio13" value="option3">
-            <label class="form-check-label" for="inlineRadio13">U</label>
-          </div>
-        </td>
-      </tr>
-
-      </tbody>
-    </table>
-
+            <tr th:each="reg : ${list}">
+              <th th:text="${reg.id}"></th>
+              <td>
+                <div class="form-check">
+                  <!--<input class="form-check-input" type="checkbox" id="defaultCheck1" th:field="${reg.isTested}">-->
+                </div>
+              </td>
+              <td th:text="${reg.firstname} + ' ' + ${reg.lastname}"></td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio11" value="POSITIV" th:field="*{reg.testResult}">
+                  <label class="form-check-label" for="inlineRadio11">P</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio12" value="NEGATIV" th:field="*{reg.testResult}">
+                  <label class="form-check-label" for="inlineRadio12">N</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio13" value="INVALID" th:field="*{reg.testResult}">
+                  <label class="form-check-label" for="inlineRadio13">U</label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="submit" class="btn-submit">Absenden</button>
+      </form>
     </div>
 
 
