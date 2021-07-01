@@ -67,13 +67,13 @@ public class InternalController {
 
         for(RegistrationData rd : ts.getRegs()){
             if(rd.getIsTested() && rd.getTestResult()!=null) {
-                ResultPDF pdf = ResultPDF.ConvertRegistrationToPdf(rd);
-                new Thread(() -> SendEmails.sendResultMail(pdf,rd.getEmail())).start();
-                registrationDataRepository.save(rd);
+                RegistrationData r = registrationDataRepository.findById(rd.getId()).get();
+                ResultPDF pdf = ResultPDF.ConvertRegistrationToPdf(r,rd.getTestResult());
+                new Thread(() -> SendEmails.sendResultMail(pdf,r.getEmail())).start();
             }
         }
-
-        return "Internal/Enter_Result";
+        model.addAttribute("registration", new RegistrationData());
+        return "Booking/Start";
     }
 
 }

@@ -22,6 +22,7 @@
               <td>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="defaultCheck1" th:field="*{regs[__${itemStat.index}__].isTested}">
+                  <input type="hidden" th:field="*{regs[__${itemStat.index}__].id}">
                 </div>
               </td>
               <td th:text="${reg.firstname} + ' ' + ${reg.lastname}"></td>

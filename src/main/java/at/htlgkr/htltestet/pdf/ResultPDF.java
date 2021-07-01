@@ -251,14 +251,19 @@ public class ResultPDF extends PDFData {
     }
 
 
-    public static ResultPDF ConvertRegistrationToPdf(RegistrationData rd){
+    public static ResultPDF ConvertRegistrationToPdf(RegistrationData rd,String result){
         ResultPDF rpdf = new ResultPDF();
 
-        rpdf.setTestResult(rd.getTestResult());
+
+        rpdf.setTestResult(TestResult.valueOf(result));
         rpdf.setTestingDate(rd.getTestDateTime());
         rpdf.setFirstname(rd.getFirstname());
         rpdf.setLastname(rd.getLastname());
-        rpdf.setBirthdate(rd.getBirthdate());
+        if(rd.getBirthdate() == null){
+            rpdf.setBirthdate(LocalDate.now());
+        }
+        else rpdf.setBirthdate(rd.getBirthdate());
+
         rpdf.setLocation(rd.getStreet()+" "+rd.getStreetNumber());
         return rpdf;
     }

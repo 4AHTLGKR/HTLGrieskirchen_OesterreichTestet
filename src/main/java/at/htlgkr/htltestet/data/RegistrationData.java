@@ -52,6 +52,6 @@ public class RegistrationData {
     }
 
     private boolean isTested;
-    private TestResult testResult;
+    private String testResult;
 
 }
