@@ -2,6 +2,7 @@ package at.htlgkr.htltestet.controller;
 
 import at.htlgkr.htltestet.Mail.SendEmails;
 import at.htlgkr.htltestet.data.RegistrationData;
+import at.htlgkr.htltestet.data.RegistrationDataDto;
 import at.htlgkr.htltestet.data.RegistrationDataRepository;
 import at.htlgkr.htltestet.pdf.ResultPDF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +38,21 @@ public class InternalController {
     public String enter_result(Model model) {
 
         List<RegistrationData> registrationDataList;
-
         registrationDataList = this.getRegistrations().stream().filter(x->!x.getIsTested()).collect(Collectors.toList());
 
+        RegistrationDataDto regForm = new RegistrationDataDto();
+
+        logger.warning("RegForm vor befüllen: " + regForm);
+        for (RegistrationData registrationData : registrationDataList) {
+            regForm.addRegs(registrationData);
+        }
+        logger.warning("RegForm nach befüllen:" + regForm);
         if(registrationDataList.isEmpty()){
             logger.warning("List is empty");
         }
 
-        model.addAttribute("list", registrationDataList);
-        model.addAttribute("changedRegistration", new RegistrationData());
+        model.addAttribute("form", regForm);
+
 
         return "Internal/Enter_Result";
     }
@@ -56,9 +63,9 @@ public class InternalController {
     }
 
     @PostMapping("enter_result")
-    public String enterResultTwo(@ModelAttribute("list")List<RegistrationData> ts, Model model) {
+    public String enterResultTwo(@ModelAttribute("form")RegistrationDataDto ts, Model model) {
 
-        for(RegistrationData rd : ts){
+        for(RegistrationData rd : ts.getRegs()){
             if(rd.getIsTested() && rd.getTestResult()!=null) {
                 ResultPDF pdf = ResultPDF.ConvertRegistrationToPdf(rd);
                 new Thread(() -> SendEmails.sendResultMail(pdf,rd.getEmail())).start();

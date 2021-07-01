@@ -3,31 +3,31 @@ package at.htlgkr.htltestet.data;
 import at.htlgkr.htltestet.pdf.TestResult;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class RegistrationDataDto {
 
-    private int id;
+    private List<RegistrationData> regs;
 
-    private String firstname;
-    private String lastname;
-
-    private boolean isTested;
-    private TestResult testResult;
-
-    public boolean getIsTested() {
-        return isTested;
+    public RegistrationDataDto(List<RegistrationData> regs) {
+        this.regs = regs;
     }
 
-    public void setIsTested(boolean tested) {
-        isTested = tested;
+    public RegistrationDataDto() {
+        this.regs = new ArrayList<>();
     }
 
-    public static RegistrationDataDto RegistrationToDto(RegistrationData r){
-        RegistrationDataDto rdto = new RegistrationDataDto();
-        rdto.setFirstname(r.getFirstname());
-        rdto.setId(r.getId());
-        rdto.setLastname(r.getLastname());
-        return rdto;
+    public void addRegs(RegistrationData registrationData){
+        this.regs.add(registrationData);
     }
 
+    public List<RegistrationData> getRegs() {
+        return regs;
+    }
+
+    public void setRegs(List<RegistrationData> regs) {
+        this.regs = regs;
+    }
 }
