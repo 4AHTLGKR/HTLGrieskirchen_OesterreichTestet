@@ -53,7 +53,7 @@
         <input id="phoneNumber" type="hidden" th:field="*{phoneNumber}">
         <input id="email" type="hidden" th:field="*{email}">
 
-        <input id="selectedScreeningStationId" required type="hidden" th:value="${registration.getScreeningStationId()}" th:field="*{screeningStationId}">
+        <input id="selectedScreeningStationId" required type="hidden" th:value="*{screeningStationId}" th:field="*{screeningStationId}">
         <div class="selected-screeningstation"></div>
     </div>
     <button type="submit" class="btn btn-primary float-end">Weiter</button>
