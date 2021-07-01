@@ -2,23 +2,19 @@ package at.htlgkr.htltestet.sec;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-@Table(name = "user")
 public class User implements UserDetails {
-    @Id
     private String username;
     private String password;
+    private int screeningStationId;
 
     public User() {}
-    public User(String username, String password) {
+    public User(String username, String password, int screeningStationId) {
         this.username = username;
         this.password = password;
+        this.screeningStationId = screeningStationId;
     }
 
 
@@ -43,6 +39,14 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getScreeningStationId() {
+        return screeningStationId;
+    }
+
+    public void setScreeningStationId(int screeningStationId) {
+        this.screeningStationId = screeningStationId;
     }
 
     @Override

@@ -7,16 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
-    private final UserRepository userRepository;
+    private final UserDtoRepository userDtoRepository;
 
-    public SecurityUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public SecurityUserDetailsService(UserDtoRepository userDtoRepository) {
+        this.userDtoRepository = userDtoRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username)
+        UserDto user = userDtoRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));
-        return user;
+        User u = new User();
+        u.setUsername(user.getUsername());
+        u.setPassword(user.getPassword());
+        return u;
     }
 }
