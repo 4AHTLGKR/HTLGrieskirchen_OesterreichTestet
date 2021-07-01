@@ -22,36 +22,41 @@
   </div>
 
   <!--WIP-->
+
   <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screening_station.name}, locationCity =${screening_station.plz + ' ' + screening_station.city}, locationStreet = ${screening_station.street})"></div>
 
   <div style="margin:10px" th:insert="fragments/calendar :: calendarFragment (date = ${registration.testDateTime.toLocalDate()}, time = ${registration.testDateTime.toLocalTime()})"></div>
 
 
+
+
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    Launch demo modal
+  <button type="button" id="cancelBookingButton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    Termin stornieren
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal" id="cancelBookingModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <h5 class="modal-title">Termin stornieren?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <p th:text="|Sind Sie sicher, dass Sie Ihren Termin am ${registration.testDateTime.toLocalDate()} um ${registration.testDateTime.toLocalTime()} Uhr stornieren wollen?|"></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Ja</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Nein</button>
         </div>
       </div>
     </div>
   </div>
+
+
 
   <button class="btn btn-primary">Laufzettel herunterladen</button>
 
@@ -59,5 +64,6 @@
 <div th:insert="fragments/layout :: scripts">
 
 </div>
+<script th:src="@{/JS/script.js}"></script>
 </body>
 </html>
