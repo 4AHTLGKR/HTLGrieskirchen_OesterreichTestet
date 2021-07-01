@@ -18,5 +18,5 @@ public class ScreeningStation {
     private String street;
     private String name;
 
-    private ArrayList<Integer> currentPatients;
+    private ArrayList<Integer> currentRegistrations;
 }
