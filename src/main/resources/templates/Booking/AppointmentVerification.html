@@ -49,8 +49,11 @@
           <p th:text="|Sind Sie sicher, dass Sie Ihren Termin am ${registration.testDateTime.toLocalDate()} um ${registration.testDateTime.toLocalTime()} Uhr stornieren wollen?|"></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Ja</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Nein</button>
+          <form th:action="@{cancelled}" th:object="${registration}" method="get">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Ja</button>
+            <input type="hidden" th:field="*{id}"/>
+          </form>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Nein</button>
         </div>
       </div>
     </div>

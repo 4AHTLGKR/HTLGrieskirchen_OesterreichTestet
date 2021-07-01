@@ -73,7 +73,8 @@ public class RegistrationController {
      * of the appointment was successful*/
 
     @GetMapping("cancelled")
-    public String cancelled(Model model) {
+    public String cancelled(@ModelAttribute("registration") RegistrationData registration, Model model) {
+        registrationDataRepository.deleteById(registration.getId());
         return "Booking/Cancelled";
     }
 }
