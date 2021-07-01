@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .permitAll()
                 .and()
-                .addFilterAfter(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(authenticationFilter(), CustomUsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
