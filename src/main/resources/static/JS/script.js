@@ -19,3 +19,8 @@ function changeDateTime()
     $("#selectedTimeSlot").val($('#dateSlot').val().trim() + " " + $(".active").text().trim());
 
 }
+
+$('#cancelBookingButton').on('click', function(){
+    $('#cancelBookingModal').modal('show');
+});
+

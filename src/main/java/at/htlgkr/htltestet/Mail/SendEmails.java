@@ -12,10 +12,13 @@ import javax.mail.util.ByteArrayDataSource;
 import java.io.*;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SendEmails {
 
     private static final String URL = "http://localhost:8080";
+    private static final Logger _LOGGER = Logger.getLogger("SendEmails");
     private static void sendMail(String mailContent, String to, byte[] pdf) throws IOException {
 
 
@@ -35,7 +38,8 @@ public class SendEmails {
 
         Session session = Session.getInstance(props, new GmailAuthenticator(FROM,PASS));
         try{
-            System.out.println("!!!!!!!!!!!!!! Sending mail to "+to);
+            _LOGGER.log(Level.INFO,"Sending mail to "+to);
+
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("austria.govcovidtest@gmail.com"));
 
@@ -96,5 +100,18 @@ public class SendEmails {
             e.printStackTrace();
         }
 
+    }
+
+
+    public static void sendStornoMail(RegistrationData regis){
+        RestTemplate restTemplate = new RestTemplate();
+
+        String mailContent = restTemplate.getForObject(URL +"/Mail/Storno", String.class);
+        try{
+
+            sendMail(mailContent,regis.getEmail(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
