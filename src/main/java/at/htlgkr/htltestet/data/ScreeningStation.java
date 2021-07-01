@@ -3,6 +3,7 @@ package at.htlgkr.htltestet.data;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -16,4 +17,6 @@ public class ScreeningStation {
     private int plz;
     private String street;
     private String name;
+
+    private ArrayList<Integer> currentPatients;
 }
