@@ -61,7 +61,7 @@ public class RegistrationController {
      * of the appointment was successful*/
 
     @GetMapping("cancelled")
-    public String cancelled() {
+    public String cancelled(Model model) {
         return "Booking/Cancelled";
     }
 }
