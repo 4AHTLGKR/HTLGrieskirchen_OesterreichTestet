@@ -1,9 +1,7 @@
 package at.htlgkr.htltestet.controller;
 
 import at.htlgkr.htltestet.Mail.SendEmails;
-import at.htlgkr.htltestet.data.RegistrationData;
-import at.htlgkr.htltestet.data.RegistrationDataDto;
-import at.htlgkr.htltestet.data.RegistrationDataRepository;
+import at.htlgkr.htltestet.data.*;
 import at.htlgkr.htltestet.pdf.ResultPDF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +28,9 @@ public class InternalController {
 
     @Autowired
     private RegistrationDataRepository registrationDataRepository;
+
+    @Autowired
+    private ScreeningStationRepository screeningStationRepository;
 
     @GetMapping("/internal/barcode_reading")
     public String barcode_reading(Model model) {
@@ -75,4 +78,13 @@ public class InternalController {
         return "/internal/barcode_reading";
     }
 
+    @PostMapping("/internal/sendCode")
+    public String sendCode(@RequestParam int barcode, HttpServletRequest request, Model model) {
+        int screeningStationId = Integer.parseInt(request.getSession().getAttribute("screeningStationId").toString());
+        ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
+        screeningStation.getCurrentRegistrations().add(barcode);
+
+        screeningStationRepository.save(screeningStation);
+        return barcode_reading(model);
+    }
 }
