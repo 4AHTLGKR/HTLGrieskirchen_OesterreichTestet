@@ -91,6 +91,8 @@ public class RegistrationController {
 
     @GetMapping("cancelled")
     public String cancelled(@ModelAttribute("registration") RegistrationData registration, Model model) {
+
+        new Thread(() -> SendEmails.sendStornoMail(registrationDataRepository.findById(registration.getId()).get())).start();
         registrationDataRepository.deleteById(registration.getId());
         return "Booking/Cancelled";
     }
