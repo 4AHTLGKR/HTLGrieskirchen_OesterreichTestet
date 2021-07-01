@@ -62,7 +62,7 @@ public class InternalController {
         return registrationDataRepository.findAll();
     }
 
-    @PostMapping("enter_result")
+    @PostMapping("/internal/enter_result")
     public String enterResultTwo(@ModelAttribute("form")RegistrationDataDto ts, Model model) {
 
         for(RegistrationData rd : ts.getRegs()){
@@ -72,8 +72,7 @@ public class InternalController {
                 new Thread(() -> SendEmails.sendResultMail(pdf,r.getEmail())).start();
             }
         }
-        model.addAttribute("registration", new RegistrationData());
-        return "Booking/Start";
+        return "/internal/barcode_reading";
     }
 
 }
