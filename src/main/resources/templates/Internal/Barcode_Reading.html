@@ -17,7 +17,7 @@
             <div class="col-sm">
                 <div class="controls">
                     <label>
-                        <span>Camera</span>
+                        <span>Camera: </span>
                         <select name="input-stream_constraints" id="deviceSelection">
                         </select>
                     </label>
@@ -33,6 +33,12 @@
                 </div>
                 <br>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Send Code</button>
+                <br>
+                <br>
+                <form action="http://localhost:8080/enter_result">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Enter Test Results</button>
+                </form>
+
             </div>
 
             <div class="col-sm">
@@ -40,6 +46,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 </section>
