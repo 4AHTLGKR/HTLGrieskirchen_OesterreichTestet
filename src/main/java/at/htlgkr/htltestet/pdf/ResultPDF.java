@@ -1,5 +1,6 @@
 package at.htlgkr.htltestet.pdf;
 
+import at.htlgkr.htltestet.data.RegistrationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -247,5 +248,23 @@ public class ResultPDF extends PDFData {
         lines.add(l);
 
 
+    }
+
+
+    public static ResultPDF ConvertRegistrationToPdf(RegistrationData rd,String result){
+        ResultPDF rpdf = new ResultPDF();
+
+
+        rpdf.setTestResult(TestResult.valueOf(result));
+        rpdf.setTestingDate(rd.getTestDateTime());
+        rpdf.setFirstname(rd.getFirstname());
+        rpdf.setLastname(rd.getLastname());
+        if(rd.getBirthdate() == null){
+            rpdf.setBirthdate(LocalDate.now());
+        }
+        else rpdf.setBirthdate(rd.getBirthdate());
+
+        rpdf.setLocation(rd.getStreet()+" "+rd.getStreetNumber());
+        return rpdf;
     }
 }

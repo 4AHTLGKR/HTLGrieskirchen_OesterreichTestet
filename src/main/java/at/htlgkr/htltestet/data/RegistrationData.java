@@ -2,6 +2,7 @@ package at.htlgkr.htltestet.data;
 
 
 
+import at.htlgkr.htltestet.pdf.TestResult;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -42,5 +43,15 @@ public class RegistrationData {
     private LocalDateTime testDateTime;
 
 
+    public boolean getIsTested() {
+        return isTested;
+    }
+
+    public void setIsTested(boolean tested) {
+        isTested = tested;
+    }
+
+    private boolean isTested;
+    private String testResult;
 
 }

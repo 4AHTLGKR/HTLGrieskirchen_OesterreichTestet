@@ -39,6 +39,7 @@ public class SendEmails {
         Session session = Session.getInstance(props, new GmailAuthenticator(FROM,PASS));
         try{
             _LOGGER.log(Level.INFO,"Sending mail to "+to);
+
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("austria.govcovidtest@gmail.com"));
 
@@ -70,6 +71,7 @@ public class SendEmails {
             }
 
             Transport.send(msg);
+            System.out.println("!!!!!!!!!!!!!! Sent mail to "+to+" successfully");
         }catch (Exception e){
             e.printStackTrace();
         }
