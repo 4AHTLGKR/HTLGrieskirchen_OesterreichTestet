@@ -34,6 +34,7 @@ public class RegistrationController {
     @PostMapping("screeningstation")
     public String screeningstation(@ModelAttribute("registration") RegistrationData registration, Model model){
         model.addAttribute("registration", registration);
+        model.addAttribute("screeningstation", screeningStationRepository.findAll());
         return "Booking/screeningstation";
     }
 
