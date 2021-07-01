@@ -5,14 +5,16 @@ import at.htlgkr.htltestet.data.RegistrationData;
 import at.htlgkr.htltestet.data.RegistrationDataRepository;
 import at.htlgkr.htltestet.data.ScreeningStation;
 import at.htlgkr.htltestet.data.ScreeningStationRepository;
+import at.htlgkr.htltestet.pdf.RegistrationPDF;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -48,12 +50,15 @@ public class RegistrationController {
     @PostMapping("completed")
     public String completed(@ModelAttribute("registration") RegistrationData registration, Model model) {
 
-        model.addAttribute("registration", registration);
         new Thread(() -> SendEmails.sendRegistrationMail(registration)).start();
         registrationDataRepository.save(registration);
+        RegistrationPDF pdf = new RegistrationPDF();
+        pdf.setCode(registration.getId() + "");
+        pdf.setScreeningStation(screeningStationRepository.findById(registration.getScreeningStationId()).get().getName());
+        pdf.setCreationDate(LocalDateTime.now());
+        model.addAttribute("regpdf", pdf);
         return "Booking/Completed";
     }
-
 
     @GetMapping("authentication")
     public String authentication(@RequestParam int registrationId, Model model) {
@@ -61,13 +66,27 @@ public class RegistrationController {
         return "Booking/Authentication";
     }
     @GetMapping("appointment")
+
     public String appointment(@RequestParam LocalDate birthday, @RequestParam int registrationId, Model model) {
-        RegistrationData registration = registrationDataRepository.findById(registrationId).get();
-        if(!registration.getBirthdate().equals(birthday)){
-            model.addAttribute("registrationId", registrationId);
-            model.addAttribute("wrongBirthdate", true);
+
+
+        RegistrationData registration = null;
+
+        try {
+            registration = registrationDataRepository.getOne(registrationId);
+            
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("A registration for given registrationId (" + registrationId + ") could not be found");
+            model.addAttribute("hasWrongRegistrationId", true);
             return "Booking/Authentication";
         }
+        if(!registration.getBirthdate().equals(birthday)){
+              model.addAttribute("registrationId", registrationId);
+              model.addAttribute("wrongBirthdate", true);
+              return "Booking/Authentication";
+         }
+
         model.addAttribute("registration", registration);
         int screeningStationId = registration.getScreeningStationId();
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
@@ -81,6 +100,8 @@ public class RegistrationController {
 
     @GetMapping("cancelled")
     public String cancelled(@ModelAttribute("registration") RegistrationData registration, Model model) {
+
+        new Thread(() -> SendEmails.sendStornoMail(registrationDataRepository.findById(registration.getId()).get())).start();
         registrationDataRepository.deleteById(registration.getId());
         return "Booking/Cancelled";
     }

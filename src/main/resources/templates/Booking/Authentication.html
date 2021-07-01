@@ -11,7 +11,9 @@
     <h1>Ihr COVID19 Screening-Termin</h1>
     <p>Zur Sicherheit Ihrer persönlichen Daten ist es notwendig, Sie eindeutig zu identifizieren</p>
     <p>Bitte geben Sie Ihr Geburtsdatum ein.</p>
+
     <div th:if="${wrongBirthdate}" class="alert alert-warning" >Der von Ihnen eingegebene Geburtstag ist falsch</div>
+
     <form th:action="@{appointment}" method="get">
         <div>
             <label>Geburtsdatum:</label>
@@ -20,6 +22,8 @@
         </div>
 
         <input type="hidden" th:value="${registrationId}" name="registrationId">
+        <br>
+        <div th:if="${hasWrongRegistrationId}" class="alert alert-warning" >Der von Ihnen verwendetet Link ist ungültig. Bitte versuchen Sie den Link manuell in die Adresszeile des Browers einzufügen</div>
         <button type="submit" class="btn btn-primary mt-3 float-end">Bestätigen</button>
         <br>
     </form>
