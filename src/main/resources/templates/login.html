@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: headFragment">
+  <title id="pageTitle">Login</title>
+</head>
+<body class="mx-5">
+
+<div class="card fadeInDown mx-auto mt-5" style="width: 30rem;">
+  <div class="card-body">
+    <h1 class="card-title">Login</h1>
+    <h2 class="card-subtitle mb-2 text-muted">für HTL-Testet</h2>
+    <form th:action="@{/login}" method="post" class="card-text">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 2.5em;" id="basic-addon1">@</span>
+        </div>
+        <input type="email" name="username" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text pl-2" style="width: 2.5em;" id="basic-addon2">*</span>
+        </div>
+        <input type="password" name="password" class="form-control" placeholder="Passwort" aria-label="Passwort" aria-describedby="basic-addon2">
+      </div>
+      <input type="submit" class="fadeIn fourth btn btn-primary btn-lg" value="Anmelden">
+    </form>
+  </div>
+</div>
+<!--
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <div th:if="${param.error}">
+      <p th:text="${session.error}" th:unless="${session == null}">[...]</p>
+    </div>
+    <div th:if="${param.logout}">Sie wurden abgemeldet.</div>
+
+    <form th:action="@{/login}" method="post">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>-->
+
+<div th:insert="fragments/layout :: scripts"></div>
+<script th:src="@{/JS/script.js}"></script>
+
+</body>
+</html>
