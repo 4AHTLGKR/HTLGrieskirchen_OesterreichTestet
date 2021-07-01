@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Controller
 public class RegistrationController {
@@ -63,11 +64,31 @@ public class RegistrationController {
         return "Booking/Authentication";
     }
     @GetMapping("appointment")
-    public String appointment(@ModelAttribute("registration") RegistrationData registration, Model model) {
+    public String appointment(@RequestParam int registrationId, Model model) {
+
+        RegistrationData registration = null;
+
+        try {
+            registration = registrationDataRepository.getOne(registrationId);
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("A registration for given registrationId (" + registrationId + ") could not be found");
+            model.addAttribute("hasWrongRegistrationId", true);
+            return "Booking/Authentication";
+        }
+
         model.addAttribute("registration", registration);
         int screeningStationId = registration.getScreeningStationId();
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
         model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
+    }
+
+    /**This endpoint is called if the cancellation
+     * of the appointment was successful*/
+
+    @GetMapping("cancelled")
+    public String cancelled(Model model) {
+        return "Booking/Cancelled";
     }
 }
