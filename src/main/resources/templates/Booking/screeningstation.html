@@ -22,7 +22,7 @@
     <ul class="list-group location-list list-group-flush screen-place" >
         <li class="list-group-item" th:each="screen : ${screeningstation}">
             <input name="screeningStationId" type="number" hidden th:value="${screen.id}">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = screen.name, locationCity = screen.plz + ' ' + screen.city, locationStreet = screen.street)"></div>
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screen.name}, locationCity = ${screen.plz} + ' ' + ${screen.city}, locationStreet = ${screen.street})"></div>
         </li>
     </ul>
 </div>
@@ -41,7 +41,7 @@
         <input id="phoneNumber" type="hidden" th:field="*{phoneNumber}">
         <input id="email" type="hidden" th:field="*{email}">
 
-        <input id="selectedScreeningStationId" required type="hidden" th:value="${registration.screeningStationId}" th:field="*{screeningStationId}">
+        <input id="selectedScreeningStationId" required type="hidden" th:value="*{screeningStationId}" th:field="*{screeningStationId}">
         <div class="selected-screeningstation"></div>
     </div>
     <button type="submit" class="btn btn-primary float-end">Weiter</button>
