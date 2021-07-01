@@ -87,6 +87,7 @@ public class RegistrationPDF extends PDFData {
         pdcs.beginText();
         pdcs.setLeading(14.5f);
         pdcs.newLineAtOffset(30, 690);
+        code = "                                                        " + code;
         for(int i = 0; i < 57-code.length(); ++i)
         {
             code = " " + code;
