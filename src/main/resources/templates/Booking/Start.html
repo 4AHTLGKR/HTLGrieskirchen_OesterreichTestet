@@ -3,7 +3,7 @@
 <head th:include="fragments/layout :: headFragment">
     <title id="pageTitle">Start</title>
 </head>
-<body class="mx-5">
+<body>
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
@@ -57,7 +57,8 @@
                 <div class="col">
                     <input class="form-control" id="street" required type="text" th:field="*{street}"></div>
                 <div class="col">
-                    <input class="form-control" id="streetNumber" required type="number" th:field="*{streetNumber}"></div>
+                    <input class="form-control" id="streetNumber" required type="number" th:field="*{streetNumber}">
+                </div>
             </div>
             <br>
 
@@ -95,8 +96,8 @@
     </form>
 
 
-    <div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
 </div>
+<div th:insert="fragments/layout :: footerFragment (currentpage = 1, percent = 12.5)"></div>
 
 <div th:insert="fragments/layout :: scripts"></div>
 <script th:src="@{/JS/script.js}"></script>

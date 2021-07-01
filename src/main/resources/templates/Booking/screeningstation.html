@@ -3,7 +3,7 @@
 <head th:include="fragments/layout :: headFragment">
     <title id="pageTitle">ScreeningStation</title>
 </head>
-<body class="mx-5">
+<body>
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
@@ -20,21 +20,9 @@
 
 <div class="border mb-3">
     <ul class="list-group location-list list-group-flush screen-place" >
-        <li class="list-group-item">
-            <input name="screeningStationId" type="number" hidden value="1">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
-        </li>
-        <li class="list-group-item">
-            <input name="screeningStationId" type="number" hidden value="2">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"><input name="screeningStationId" type="number" hidden value="2"></div>
-        </li>
-        <li class="list-group-item">
-            <input name="screeningStationId" type="number" hidden value="3">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
-        </li>
-        <li class="list-group-item">
-            <input name="screeningStationId" type="number" hidden value="4">
-            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
+        <li class="list-group-item" th:each="screen : ${screeningstation}">
+            <input name="screeningStationId" type="number" hidden th:value="${screen.id}">
+            <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screen.name}, locationCity = ${screen.plz} + ' ' + ${screen.city}, locationStreet = ${screen.street})"></div>
         </li>
     </ul>
 </div>
@@ -53,7 +41,7 @@
         <input id="phoneNumber" type="hidden" th:field="*{phoneNumber}">
         <input id="email" type="hidden" th:field="*{email}">
 
-        <input id="selectedScreeningStationId" required type="hidden" th:value="${registration.screeningStationId}" th:field="*{screeningStationId}">
+        <input id="selectedScreeningStationId" required type="hidden" th:value="*{screeningStationId}" th:field="*{screeningStationId}">
         <div class="selected-screeningstation"></div>
     </div>
     <button type="submit" class="btn btn-primary float-end">Weiter</button>
