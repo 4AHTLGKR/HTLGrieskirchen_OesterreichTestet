@@ -20,8 +20,8 @@
 
 <div class="border mb-3">
     <ul class="list-group location-list list-group-flush screen-place" >
-        <li class="list-group-item">
-            <input name="screeningStationId" type="number" hidden value="1">
+        <li class="list-group-item" th:each="screen : ${screeningstation}">
+            <input name="screeningStationId" type="number" hidden th:value="${screen.id}">
             <div th:insert="fragments/pinlocation :: pinlocationFragment (locationName = 'Schulzentrum - Raiffeisen Arena, Grieskirchen', locationCity = '4710 Grieskirchen', locationStreet = 'Parzer Schulstraße 1')"></div>
         </li>
         <li class="list-group-item">
