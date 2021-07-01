@@ -7,7 +7,7 @@
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
-<div class="container-md">
+<div class="container-md" >
   <h1>Ihr COVID19 Screening-Termin</h1>
   <div class="card" style="width: 18rem;">
     <div class="card-header">
@@ -23,9 +23,9 @@
 
   <!--WIP-->
 
-  <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screening_station.name}, locationCity =${screening_station.plz + ' ' + screening_station.city}, locationStreet = ${screening_station.street})"></div>
+  <div style="margin-left:6px; margin-top: 20px;" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screening_station.name}, locationCity =${screening_station.plz + ' ' + screening_station.city}, locationStreet = ${screening_station.street})"></div>
 
-  <div style="margin:10px" th:insert="fragments/calendar :: calendarFragment (date = ${registration.testDateTime.toLocalDate()}, time = ${registration.testDateTime.toLocalTime()})"></div>
+  <div style="margin-left:10px; margin-top: 20px; margin-bottom: 20px;" th:insert="fragments/calendar :: calendarFragment (date = ${registration.testDateTime.toLocalDate()}, time = ${registration.testDateTime.toLocalTime()})"></div>
 
 
 
