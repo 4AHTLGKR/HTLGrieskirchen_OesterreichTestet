@@ -47,7 +47,8 @@ public class SendEmails {
 
             if(pdf!=null){
                 MimeBodyPart att = new MimeBodyPart();
-                ByteArrayDataSource bds = new ByteArrayDataSource(pdf, "PDF");
+
+                ByteArrayDataSource bds = new ByteArrayDataSource(pdf, "application/pdf");
                 att.setDataHandler(new DataHandler(bds));
                 att.setFileName(bds.getName());
 
