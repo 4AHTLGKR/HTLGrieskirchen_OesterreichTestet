@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PDFController {
 
     @RequestMapping(produces = MediaType.APPLICATION_PDF_VALUE, method = RequestMethod.POST, value = "/pdf/result")
-    public @ResponseBody byte[] getResult(@RequestBody ResultPDF result){
+    public @ResponseBody byte[] getResult(@ModelAttribute ResultPDF result){
         try {
             return result.createPDF();
         } catch (IOException e) {
@@ -22,7 +22,7 @@ public class PDFController {
     }
 
     @RequestMapping(produces = MediaType.APPLICATION_PDF_VALUE, method = RequestMethod.POST, value = "/pdf/registration")
-    public @ResponseBody byte[] getRegistration(@RequestBody RegistrationPDF registration){
+    public @ResponseBody byte[] getRegistration(@ModelAttribute("regpdf") RegistrationPDF registration){
 
         try {
             return registration.createPDF();

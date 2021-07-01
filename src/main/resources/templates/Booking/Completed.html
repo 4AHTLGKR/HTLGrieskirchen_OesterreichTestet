@@ -14,14 +14,18 @@
     <h5>Zum Testtermin bringen Sie bitte mit:</h5>
     <ul>
         <li>
-            <p>Ihren Laufzettel (Nummer: <a th:text = "${registration.id}"/>)</p>
+            <p>Ihren Laufzettel (Nummer: <a th:text = "${regpdf.code}"/>)</p>
         </li>
         <li>
             Ihren Lichtbildausweis
         </li>
     </ul>
-
-    <button class="btn btn-primary">Laufzettel herunterladen</button>
+<form th:action="@{/pdf/registration}" th:object="${regpdf}" method="post">
+    <input type="hidden" th:field="*{code}">
+    <input type="hidden" th:field="*{creationDate}">
+    <input type="hidden" th:field="*{screeningStation}">
+    <button type="submit" class="btn btn-primary">Laufzettel herunterladen</button>
+</form>
     <p>Für einen möglichst schnellen Testablauf drucken Sie den Laufzettel aus und bringen ihn zum Testtermin mit. Ein
         Ausdrucken vor Ort kann nicht sichergestellt werden, da nicht alle Screening-Stationen über Drucker
         verfügen.</p>
