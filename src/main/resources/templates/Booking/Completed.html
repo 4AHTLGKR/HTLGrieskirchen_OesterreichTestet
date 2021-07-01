@@ -17,7 +17,7 @@
             <p>Ihren Laufzettel (Nummer: <a th:text="${regpdf.code}"/>)</p>
         </li>
         <li>
-            Ihren Lichtbildausweis
+            Einen Lichtbildausweis
         </li>
     </ul>
     <form th:action="@{/pdf/registration}" th:object="${regpdf}" method="post">
