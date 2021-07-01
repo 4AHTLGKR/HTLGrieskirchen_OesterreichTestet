@@ -32,6 +32,7 @@ public class RegistrationController {
     @PostMapping("screeningstation")
     public String screeningstation(@ModelAttribute("registration") RegistrationData registration, Model model){
         model.addAttribute("registration", registration);
+        model.addAttribute("screeningstation", screeningStationRepository.findAll());
         return "Booking/screeningstation";
     }
 
@@ -63,5 +64,13 @@ public class RegistrationController {
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
         model.addAttribute("screening_station", screeningStation);
         return "Booking/AppointmentVerification";
+    }
+
+    /**This endpoint is called if the cancellation
+     * of the appointment was successful*/
+
+    @GetMapping("cancelled")
+    public String cancelled(Model model) {
+        return "Booking/Cancelled";
     }
 }

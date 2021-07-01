@@ -1,6 +1,8 @@
 package at.htlgkr.htltestet.pdf;
 
 import at.htlgkr.htltestet.barcode.BarcodeController;
+import at.htlgkr.htltestet.data.RegistrationData;
+import at.htlgkr.htltestet.data.RegistrationDataRepository;
 import at.htlgkr.htltestet.pdf.Line;
 import at.htlgkr.htltestet.pdf.PDFData;
 import lombok.Data;
@@ -15,6 +17,7 @@ import org.apache.pdfbox.pdmodel.interactive.annotation.*;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
