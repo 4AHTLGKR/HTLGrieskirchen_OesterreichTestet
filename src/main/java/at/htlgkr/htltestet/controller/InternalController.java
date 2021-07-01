@@ -23,12 +23,12 @@ public class InternalController {
     @Autowired
     private RegistrationDataRepository registrationDataRepository;
 
-    @GetMapping("barcode_reading")
+    @GetMapping("/internal/barcode_reading")
     public String barcode_reading(Model model) {
         return "Internal/Barcode_Reading";
     }
 
-    @GetMapping("enter_result")
+    @GetMapping("/internal/enter_result")
     public String enter_result(Model model) {
 
         List<RegistrationData> registrationDataList;
@@ -45,7 +45,7 @@ public class InternalController {
         return "Internal/Enter_Result";
     }
 
-    @GetMapping("getRegistrations")
+    @GetMapping("/internal/getRegistrations")
     public List<RegistrationData> getRegistrations() {
         return registrationDataRepository.findAll();
     }
