@@ -22,34 +22,13 @@
         </div>
         <input type="password" name="password" class="form-control" placeholder="Passwort" aria-label="Passwort" aria-describedby="basic-addon2">
       </div>
+      <select class="mb-3 form-select" name="screeningStationId" aria-label="Teststraße auswählen">
+        <option th:each="i : ${screeningStations}" th:value="${i.id}" th:text="${i.name}"></option>
+      </select>
       <input type="submit" class="fadeIn fourth btn btn-primary btn-lg" value="Anmelden">
     </form>
   </div>
 </div>
-<!--
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
-
-    <div th:if="${param.error}">
-      <p th:text="${session.error}" th:unless="${session == null}">[...]</p>
-    </div>
-    <div th:if="${param.logout}">Sie wurden abgemeldet.</div>
-
-    <form th:action="@{/login}" method="post">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
-  </div>
-</div>-->
 
 <div th:insert="fragments/layout :: scripts"></div>
 <script th:src="@{/JS/script.js}"></script>
