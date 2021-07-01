@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 public class RegistrationController {
 
@@ -57,7 +59,8 @@ public class RegistrationController {
         return "Booking/Authentication";
     }
     @GetMapping("appointment")
-    public String appointment(@ModelAttribute("registration") RegistrationData registration, Model model) {
+    public String appointment(@RequestParam int registrationId, Model model) {
+        RegistrationData registration = registrationDataRepository.findById(registrationId).get();
         model.addAttribute("registration", registration);
         int screeningStationId = registration.getScreeningStationId();
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
