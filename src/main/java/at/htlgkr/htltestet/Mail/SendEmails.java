@@ -1,5 +1,6 @@
 package at.htlgkr.htltestet.Mail;
 
+import at.htlgkr.htltestet.HtltestetApplication;
 import at.htlgkr.htltestet.data.RegistrationData;
 import at.htlgkr.htltestet.pdf.ResultPDF;
 import org.springframework.util.ResourceUtils;
@@ -19,21 +20,13 @@ public class SendEmails {
     private static void sendMail(String mailContent, String to, byte[] pdf) throws IOException {
 
 
-
-        File authFile = ResourceUtils.getFile("classpath:email/auth.txt");
-        BufferedReader br = new BufferedReader(new FileReader(authFile));
-
-        final String FROM = br.readLine();
-        final String PASS = br.readLine();
-
-
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
-        Session session = Session.getInstance(props, new GmailAuthenticator(FROM,PASS));
+        Session session = Session.getInstance(props, new GmailAuthenticator(HtltestetApplication.getFromMail(), HtltestetApplication.getPassMail()));
         try{
 
             Message msg = new MimeMessage(session);
