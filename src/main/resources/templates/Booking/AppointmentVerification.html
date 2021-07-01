@@ -7,32 +7,66 @@
 
 <div th:insert="fragments/navbar :: navbarFragment"></div>
 
-<div class="container-md">
+<div class="container-md" >
   <h1>Ihr COVID19 Screening-Termin</h1>
   <div class="card" style="width: 18rem;">
     <div class="card-header">
-      <img class="card-img-top" th:src="|/barcode?code=*{registration.id}|" />
+      <img class="card-img-top" th:src="|/barcode?code=${registration.id}|" />
     </div>
 
     <div class="card-body">
-      <h5 class="card-title" th:text="*{registration.id}"></h5>
+      <h5 class="card-title" th:text="${registration.id}" align="center"></h5>
 
       <p class="card-text">Fortlaufende Lauzettel Nummer</p>
     </div>
   </div>
 
   <!--WIP-->
-  <div style="margin:6px" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = *{screening_station.name}, locationCity =*{screening_station.plz + ' ' + screening_station.city}, locationStreet = *{screening_station.street})"></div>
 
-  <div style="margin:10px" th:insert="fragments/calendar :: calendarFragment (date = *{registration.testDateTime.toLocalDate()}, time = *{registration.testDateTime.toLocalTime()})"></div>
+  <div style="margin-left:6px; margin-top: 20px;" th:insert="fragments/pinlocation :: pinlocationFragment (locationName = ${screening_station.name}, locationCity =${screening_station.plz + ' ' + screening_station.city}, locationStreet = ${screening_station.street})"></div>
+
+  <div style="margin-left:10px; margin-top: 20px; margin-bottom: 20px;" th:insert="fragments/calendar :: calendarFragment (date = ${registration.testDateTime.toLocalDate()}, time = ${registration.testDateTime.toLocalTime()})"></div>
 
 
-  <button class="btn btn-primary">Termin stornieren</button>
+
+
+  <!-- Button trigger modal -->
+  <button type="button" id="cancelBookingButton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    Termin stornieren
+  </button>
+
+  <!-- Modal -->
+  <div class="modal" id="cancelBookingModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Termin stornieren?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p th:text="|Sind Sie sicher, dass Sie Ihren Termin am ${registration.testDateTime.toLocalDate()} um ${registration.testDateTime.toLocalTime()} Uhr stornieren wollen?|"></p>
+        </div>
+        <div class="modal-footer">
+          <form th:action="@{cancelled}" th:object="${registration}" method="get">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Ja</button>
+            <input type="hidden" th:field="*{id}"/>
+          </form>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Nein</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <button class="btn btn-primary">Laufzettel herunterladen</button>
 
   </div>
 <div th:insert="fragments/layout :: scripts">
 
 </div>
+<script th:src="@{/JS/script.js}"></script>
 </body>
 </html>
