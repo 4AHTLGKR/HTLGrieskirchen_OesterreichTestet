@@ -96,4 +96,16 @@ public class SendEmails {
         }
 
     }
+
+
+    public static void sendStornoMail(RegistrationData regis){
+        RestTemplate restTemplate = new RestTemplate();
+
+        String mailContent = restTemplate.getForObject(URL +"/Mail/Storno", String.class);
+        try{
+            sendMail(mailContent,regis.getEmail(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

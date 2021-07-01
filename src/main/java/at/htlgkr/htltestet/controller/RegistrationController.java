@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
+
 import java.util.Optional;
 
 @Controller
@@ -66,6 +67,7 @@ public class RegistrationController {
     @GetMapping("appointment")
     public String appointment(@RequestParam int registrationId, Model model) {
 
+
         RegistrationData registration = null;
 
         try {
@@ -88,7 +90,8 @@ public class RegistrationController {
      * of the appointment was successful*/
 
     @GetMapping("cancelled")
-    public String cancelled(Model model) {
+    public String cancelled(@ModelAttribute("registration") RegistrationData registration, Model model) {
+        registrationDataRepository.deleteById(registration.getId());
         return "Booking/Cancelled";
     }
 }
