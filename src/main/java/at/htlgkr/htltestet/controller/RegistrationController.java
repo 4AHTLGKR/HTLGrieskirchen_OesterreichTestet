@@ -66,7 +66,7 @@ public class RegistrationController {
         RegistrationData registration = null;
 
         try {
-            registration = registrationDataRepository.findById(registrationId).get();
+            registration = registrationDataRepository.getOne(registrationId);
         }
         catch (NoSuchElementException ex) {
             System.out.println("A registration for given registrationId (" + registrationId + ") could not be found");
