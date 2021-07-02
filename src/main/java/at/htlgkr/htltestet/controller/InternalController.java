@@ -81,6 +81,11 @@ public class InternalController {
     public String sendCode(@RequestParam int barcode, HttpServletRequest request, Model model) {
         int screeningStationId = Integer.parseInt(request.getSession().getAttribute("screeningStationId").toString());
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
+        if (registrationDataRepository.findById(barcode).isEmpty()) {
+            model.addAttribute("invalid_barcode", true);
+            return barcode_reading(model);
+        }
+
         Set<Integer> currentReg = screeningStation.getCurrentRegistrations();
         if (currentReg == null) {
             HashSet<Integer> newList = new HashSet<>();

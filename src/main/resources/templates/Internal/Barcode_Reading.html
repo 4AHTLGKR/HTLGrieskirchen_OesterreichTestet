@@ -15,6 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
+                <div th:if="${invalid_barcode}" class="alert alert-warning" >Der Code ist ungültig. Bitte geben Sie den Code manuell ein.</div>
                 <div class="controls">
                     <label>
                         <span>Camera: </span>
