@@ -50,12 +50,13 @@ public class RegistrationController {
     @PostMapping("completed")
     public String completed(@ModelAttribute("registration") RegistrationData registration, Model model) {
 
-        new Thread(() -> SendEmails.sendRegistrationMail(registration)).start();
+
         registrationDataRepository.save(registration);
         RegistrationPDF pdf = new RegistrationPDF();
         pdf.setCode(registration.getId() + "");
         pdf.setScreeningStation(screeningStationRepository.findById(registration.getScreeningStationId()).get().getName());
         pdf.setCreationDate(LocalDateTime.now());
+        new Thread(() -> SendEmails.sendRegistrationMail(registration,pdf)).start();
         model.addAttribute("regpdf", pdf);
         return "Booking/Completed";
     }
