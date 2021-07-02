@@ -25,6 +25,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Data
@@ -55,23 +56,22 @@ public class RegistrationPDF extends PDFData {
 
         pdcs.drawImage(pdImage, 385, 700);
 
-        addTextField(100, 555, 150, 15, registration);
-        addTextField(430, 555, 150, 15, registration);
-        addTextField(100, 540, 150, 15, registration);
-        addTextField(430, 540, 150, 15, registration);
-        addTextField(100, 525, 150, 15, registration);
-        addTextField(430, 525, 150, 15, registration);
-        addTextField(100, 510, 150, 15, registration);
-        addTextField(430, 510, 150, 15, registration);
-        addTextField(100, 480, 150, 30, registration);
-        addTextField(430, 480, 150, 30, registration);
+        addTextField(100, 555, 150, 15, registration, " "+lastname);
+        addTextField(430, 555, 150, 15, registration, " "+birthdate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        addTextField(100, 540, 150, 15, registration, " "+firstname);
+        addTextField(430, 540, 150, 15, registration, " "+gender.getGender());
+        addTextField(100, 525, 150, 15, registration, " "+plz + ", " + location);
+        addTextField(430, 525, 150, 15, registration, " "+phoneNumber);
+        addTextField(100, 495, 150, 30, registration, " "+street + " \n" + streetNr);
+        addTextField(430, 495, 150, 30, registration, " "+email);
 
-        addCheckbox(30, 455, 10, 10, registration);
-        addCheckbox(30, 398, 10, 10, registration);
+        addCheckbox(30, 460, 10, 10, registration);
+        addCheckbox(30, 405, 10, 10, registration);
 
         addCheckbox(60, 105, 20, 20, registration);
         addCheckbox(250, 105, 20, 20, registration);
         addCheckbox(450, 105, 20, 20, registration);
+
 
         pdcs.addRect(385, 640, 200, 120);
         pdcs.setStrokingColor(Color.BLACK);
@@ -83,6 +83,7 @@ public class RegistrationPDF extends PDFData {
         pdcs.addRect(385, 160, 200, 80);
         pdcs.setStrokingColor(Color.BLACK);
         pdcs.stroke();
+
 
         pdcs.beginText();
         pdcs.setLeading(14.5f);
@@ -103,10 +104,9 @@ public class RegistrationPDF extends PDFData {
         writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "Zu testende Person");
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "               Name:                                                                                                            Geburtsdatum:");
-        writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "                                                                                                                                          Geschlecht:");
-        writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "          Vorname:                                                                                             SV-Nummer (10-stellig):");
+        writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "          Vorname:                                                                                                                 Geschlecht:");
         writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "           PLZ, Ort:                                                                                                  Mobiltelefonnummer:");
-        writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "              Straße,                                                                                                          E-Mail-Adresse:");
+        writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "              Straße,                                                                                                          E-Mail-Adresse:                                                                                               ");
         writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "   Hausnummer:");
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA, 9, Color.BLACK,true, pdcs, "          Hiermit erkläre ich ausdrücklich meine Zustimmung zur elektronischen Erfassung und Weiterverarbeitung meiner Daten sowie");
@@ -141,6 +141,7 @@ public class RegistrationPDF extends PDFData {
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
+        writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA, 12, Color.BLACK,true, pdcs, "                  " + TestResult.NEGATIV + "                                          " + TestResult.POSITIV + "                                             " + TestResult.INVALID);
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
         writeLine(PDType1Font.HELVETICA_BOLD, 18, Color.BLACK,true, pdcs, "");
@@ -157,11 +158,12 @@ public class RegistrationPDF extends PDFData {
         return bao.toByteArray();
     }
 
-    private void addTextField(int x, int y, int width, int height, PDDocument registration) throws IOException {
+    private void addTextField(int x, int y, int width, int height, PDDocument registration, String value) throws IOException {
         PDPage page = registration.getPage(0);
         PDAcroForm acro = registration.getDocumentCatalog().getAcroForm();
         PDTextField textField = new PDTextField(acro);
         textField.setPartialName("SampleField" + x + y);
+        textField.setValue(value);
         acro.getFields().add(textField);
         PDAnnotationWidget widget = textField.getWidgets().get(0);
         PDRectangle rect = new PDRectangle(x, y, width, height);
