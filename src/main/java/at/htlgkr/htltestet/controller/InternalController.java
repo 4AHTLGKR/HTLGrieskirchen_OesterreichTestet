@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Console;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -82,7 +81,14 @@ public class InternalController {
     public String sendCode(@RequestParam int barcode, HttpServletRequest request, Model model) {
         int screeningStationId = Integer.parseInt(request.getSession().getAttribute("screeningStationId").toString());
         ScreeningStation screeningStation = screeningStationRepository.getOne(screeningStationId);
-        screeningStation.getCurrentRegistrations().add(barcode);
+        Set<Integer> currentReg = screeningStation.getCurrentRegistrations();
+        if (currentReg == null) {
+            HashSet<Integer> newList = new HashSet<>();
+            newList.add(barcode);
+            screeningStation.setCurrentRegistrations(newList);
+        } else {
+            currentReg.add(barcode);
+        }
 
         screeningStationRepository.save(screeningStation);
         return barcode_reading(model);
