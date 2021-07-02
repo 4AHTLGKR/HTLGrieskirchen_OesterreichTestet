@@ -1,6 +1,7 @@
 package at.htlgkr.htltestet.Mail;
 
 import at.htlgkr.htltestet.data.RegistrationData;
+import at.htlgkr.htltestet.pdf.RegistrationPDF;
 import at.htlgkr.htltestet.pdf.ResultPDF;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
@@ -78,12 +79,12 @@ public class SendEmails {
 
     }
 
-    public static void sendRegistrationMail(RegistrationData regis){
+    public static void sendRegistrationMail(RegistrationData regis, RegistrationPDF pdf){
         RestTemplate restTemplate = new RestTemplate();
 
         String mailContent = restTemplate.getForObject(URL +"/Mail/Registration", String.class);
         try{
-            sendMail(mailContent.replace("@authLink",URL+"/authentication?registrationId="+regis.getId()),regis.getEmail(),null);
+            sendMail(mailContent.replace("@authLink",URL+"/authentication?registrationId="+regis.getId()),regis.getEmail(),pdf.createPDF());
         }catch (Exception e){
             e.printStackTrace();
         }
