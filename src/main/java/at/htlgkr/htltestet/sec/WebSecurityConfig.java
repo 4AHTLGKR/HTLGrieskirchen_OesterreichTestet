@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.ArrayList;
@@ -32,26 +33,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/internal/barcode_reading", true)
+                .successHandler(new MySavedRequestAwareAuthenticationSuccessHandler())
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .permitAll()
-                .and()
-                .addFilterAt(authenticationFilter(), CustomUsernamePasswordAuthenticationFilter.class);
+                .permitAll();
+                //.and()
+                //.addFilterAt(authenticationFilter(), CustomUsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public CustomUsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
-        CustomUsernamePasswordAuthenticationFilter authenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(authenticationManagerBean());
-        return authenticationFilter;
     }
 }
