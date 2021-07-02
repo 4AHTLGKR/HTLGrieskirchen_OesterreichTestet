@@ -18,6 +18,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -43,7 +44,7 @@ public class RegistrationPDF extends PDFData {
 
         PDPageContentStream pdcs = new PDPageContentStream(registration, registration.getPage(0));
 
-        BufferedImage bi = ImageIO.read(new File("src\\main\\resources\\Images\\Logo_HTLBA_Grieskirchen.png"));
+        BufferedImage bi = ImageIO.read(ResourceUtils.getFile("classpath:Images/Logo_HTLBA_Grieskirchen_Big.png"));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, "png", baos);
         byte[] bytes = baos.toByteArray();

@@ -15,6 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
+                <div th:if="${invalid_barcode}" class="alert alert-warning" >Der Code ist ungültig. Bitte geben Sie den Code manuell ein.</div>
                 <div class="controls">
                     <label>
                         <span>Camera: </span>
@@ -22,17 +23,19 @@
                         </select>
                     </label>
                 </div>
-                <div id="result_strip">
+                <form th:action="@{/internal/sendCode}" method="post">
+                    <div id="result_strip">
                     <br>
-                    <div class="form-group">
-                        <label for="inputCode">Authentification Code</label>
-                        <input type="text" class="form-control" id="inputCode" placeholder="Enter code">
-                        <small id="emailHelp" class="form-text text-muted">Enter code manually if BarCode-Reader doesn't
-                            work</small>
+                        <div class="form-group">
+                            <label for="inputCode">Authentification Code</label>
+                            <input type="text" name="barcode" class="form-control" id="inputCode" placeholder="Enter code">
+                            <small id="emailHelp" class="form-text text-muted">Enter code manually if BarCode-Reader doesn't work</small>
+                        </div>
+                        <button  type="submit" class="btn btn-primary btn-lg btn-block">Send Code</button>
                     </div>
-                </div>
-                <br>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Send Code</button>
+                    <br>
+                </form>
+
                 <br>
                 <br>
                 <form action="http://localhost:8080/internal/enter_result">
